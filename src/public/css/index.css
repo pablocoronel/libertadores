@@ -1,0 +1,17 @@
+#indexCarousel {
+	max-height: 100vh;
+	overflow: hidden;
+	background-color: black;
+}
+
+#indexCarousel img {
+	width: 100vw;
+	object-fit: cover;
+}
+
+/** mobile */
+@media (max-width: 768px) {
+	#indexCarousel img {
+		height: 100vh;
+	}
+}

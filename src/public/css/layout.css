@@ -1,0 +1,13 @@
+body {
+	min-height: 100vh;
+}
+
+/* logo del manu de navegacion */
+nav img {
+	height: 40px;
+}
+
+footer {
+	background-color: bisque;
+	height: 200px;
+}
