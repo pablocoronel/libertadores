@@ -15,6 +15,9 @@ app.set('view engine', 'pug');
 
 // Routes
 app.use(require('./routes/index.routes'));
+app.use(require('./routes/ediciones.routes'));
+app.use(require('./routes/noticias.routes'));
+app.use(require('./routes/historias.routes'));
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
