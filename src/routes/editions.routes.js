@@ -4,13 +4,13 @@ const router = Router();
 // Funciones
 const {
 	renderEditions,
-	renderEditionsCreate,
 	createEditions,
+	storeEditions,
 } = require('../controllers/editions.controller');
 
 // Rutas
 router.get('/editions', renderEditions);
-router.get('/editions/create', renderEditionsCreate);
-router.post('/editions/create', createEditions);
+router.get('/editions/create', createEditions);
+router.post('/editions/create', storeEditions);
 
 module.exports = router;

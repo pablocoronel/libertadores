@@ -1,0 +1,21 @@
+extends ../../layouts/main
+
+block content
+    .container
+        h1 Crear club
+
+        form(action="/clubs/create" method="post" )
+            .form-group.row
+                label.col-form-label.col-sm-2(for="name") Nombre
+                input.form-control.col-sm-10(type="text" name="name")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="shield") Escudo
+                input.form-control.col-sm-10(type="file" name="shield")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="country") País
+                input.form-control.col-sm-10(type="text" name="country")
+
+
+        button.btn.btn-primary(type='submit') Submit

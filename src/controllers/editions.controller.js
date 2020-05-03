@@ -6,11 +6,11 @@ editionsController.renderEditions = (req, res) => {
 };
 
 // CRUD
-editionsController.renderEditionsCreate = (req, res) => {
+editionsController.createEditions = (req, res) => {
 	res.render('models/editions/create');
 };
 
-editionsController.createEditions = (req, res) => {
+editionsController.storeEditions = (req, res) => {
 	console.log('guardar edicion');
 };
 
