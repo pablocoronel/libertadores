@@ -2,9 +2,9 @@ const Router = require('express').Router;
 const router = Router();
 
 // Funciones
-const { renderNoticias } = require('../controllers/noticias.controller');
+const { renderNews } = require('../controllers/news.controller');
 
 // Rutas
-router.get('/noticias', renderNoticias);
+router.get('/news', renderNews);
 
 module.exports = router;
