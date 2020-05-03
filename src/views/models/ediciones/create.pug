@@ -1,0 +1,35 @@
+extends ../../layouts/main
+
+block content
+    .container
+        h1 Crear edición
+
+        form(action="/ediciones/crear" method="post" )
+            .form-group.row
+                label.col-form-label.col-sm-2(for="year") Año
+                input.form-control.col-sm-10(type="text" name="year")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="champion") Campeón
+                .form-check
+                    input.form-check-input(type='radio' name='club' value='option1')
+                    label.form-check-label(for='club')
+                        | Default radio
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="card") Portada
+                input.form-control.col-sm-10(type="file" name="card")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="squad") Plantel
+                input.form-control.col-sm-10(type="file" name="squad")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="top-score") Goleador
+                input.form-control.col-sm-10(type="text" name="top-score")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="top-score-quantity") Goleador - cantidad
+                input.form-control.col-sm-10(type="text" name="top-score-quantity")
+
+        button.btn.btn-primary(type='submit') Submit

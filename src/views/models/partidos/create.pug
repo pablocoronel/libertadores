@@ -1,0 +1,53 @@
+extends ../../layouts/main
+
+block content
+    .container
+        h1 Crear partido
+
+        form(action="/partidos/crear" method="post" )
+            #accordion
+                .card
+                    .card-header
+                        button.btn.btn-link(data-toggle='collapse' data-target='#match_1' aria-expanded='true' aria-controls='collapseOne')
+                            | Partido 1
+
+                    #match_1.collapse.show(aria-labelledby='headingOne' data-parent='#accordion')
+                        .card-body
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="stadium") Estadio y fecha
+                                input.form-control.col-sm-10(type="text" name="stadium")
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="comments") Comentario adicional
+                                input.form-control.col-sm-10(type="text" name="comments")
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="home-club") Club (Local)
+                                .form-check
+                                    input.form-check-input(type='radio' name='club' value='option1')
+                                    label.form-check-label(for='club')
+                                        | Default radio
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="home-scoreboard") Marcador (Local)
+                                input.form-control.col-sm-10(type="text" name="home-scoreboard")
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="home-scorer") Goleadores (Local)
+                                input.form-control.col-sm-10(type="text" name="home-scorer")
+                            hr
+                            hr
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="away-club") Club (Visitante)
+                                .form-check
+                                    input.form-check-input(type='radio' name='club' value='option1')
+                                    label.form-check-label(for='club')
+                                        | Default radio
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="away-scoreboard") Marcador (Visitante)
+                                input.form-control.col-sm-10(type="text" name="away-scoreboard")
+
+                            .form-group.row
+                                label.col-form-label.col-sm-2(for="away-scorer") Goleadores (Visitante)
+                                input.form-control.col-sm-10(type="text" name="away-scorer")
