@@ -9,9 +9,11 @@ const {
 	listClubs,
 	storeClubs,
 	updateClubs,
+	upload,
 } = require('../controllers/clubs.controller');
 
 // Rutas
-router.get('/clubs', createClubs);
+router.get('/clubs/create', createClubs);
+router.post('/clubs', upload.single('shield'), storeClubs);
 
 module.exports = router;

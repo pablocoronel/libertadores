@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 
 // Initials
 const app = express();
@@ -10,6 +11,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Middlewares
+app.use(morgan('dev')); // Log de la app
+app.use(express.urlencoded({ extended: false })); // Req.body a JSON
 
 // Global variables
 
