@@ -29,15 +29,27 @@ html(lang='en')
                 hr.sidebar-divider.my-0
                 //- Nav Item - Pages Collapse Menu
                 li.nav-item
-                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapsePages' aria-expanded='true' aria-controls='collapsePages')
+                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseClubs' aria-expanded='true' aria-controls='collapseClubs')
                         i.fas.fa-fw.fa-folder
                         span Clubs
-                    #collapsePages.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
+                    #collapseClubs.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
                         .bg-white.py-2.collapse-inner.rounded
-                            a.collapse-item(href='/clubs') Lista
-                            a.collapse-item(href='/clubs/create') Crear
+                            a.collapse-item(href='/admin/clubs') Lista
+                            a.collapse-item(href='/admin/clubs/create') Crear
+                //- Divider
+                hr.sidebar-divider.my-0
+
+                li.nav-item
+                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseEditions' aria-expanded='true' aria-controls='collapseEditions')
+                        i.fas.fa-fw.fa-folder
+                        span Editions
+                    #collapseEditions.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
+                        .bg-white.py-2.collapse-inner.rounded
+                            a.collapse-item(href='/admin/editions') Lista
+                            a.collapse-item(href='/admin/editions/create') Crear
                 //- Divider
                 hr.sidebar-divider.d-none.d-md-block
+
                 //- Sidebar Toggler (Sidebar)
                 .text-center.d-none.d-md-inline
                     button#sidebarToggle.rounded-circle.border-0
