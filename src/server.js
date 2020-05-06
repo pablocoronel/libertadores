@@ -20,10 +20,11 @@ app.use(methodOverride('_method'));
 
 // Routes
 app.use(require('./routes/index.routes'));
-app.use(require('./routes/editions.routes'));
 app.use(require('./routes/news.routes'));
+app.use(require('./routes/editions.routes'));
 app.use(require('./routes/stories.routes'));
-app.use(require('./routes/clubs.router'));
+app.use(require('./routes/admin/clubs.router'));
+app.use(require('./routes/admin/editions.routes'));
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));

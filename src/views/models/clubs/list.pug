@@ -17,7 +17,7 @@ block content
                         th(scope='row') 1
                         td #{club.name}
                         td
-                            a(href="/clubs/"+club._id+"/edit") Editar
+                            a(href="/admin/clubs/"+club._id+"/edit") Editar
                         td
-                            form(action="/clubs/"+club._id+"?_method=DELETE" method="post")
+                            form(action="/admin/clubs/"+club._id+"?_method=DELETE" method="post")
                                 input.btn.btn-link(type="submit" value="Borrar")

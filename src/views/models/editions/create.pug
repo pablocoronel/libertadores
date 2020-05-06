@@ -1,10 +1,10 @@
-extends ../../layouts/main
+extends ../../layouts/admin
 
 block content
     .container
         h1 Crear edición
 
-        form(action="/editions/create" method="post" )
+        form(action="/admin/editions" method="post" )
             .form-group.row
                 label.col-form-label.col-sm-2(for="year") Año
                 input.form-control.col-sm-10(type="text" name="year")

@@ -1,6 +1,6 @@
-const { uploadImage } = require('../helpers/uploadImage');
+const { uploadImage } = require('../../helpers/uploadImage');
 const clubsController = {};
-const Club = require('../models/Club');
+const Club = require('../../models/Club');
 
 // Funciones
 clubsController.listClubs = async (req, res) => {
