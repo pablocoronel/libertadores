@@ -62,8 +62,14 @@ clubsController.updateClubs = async (req, res) => {
 	}
 };
 
-clubsController.destroyClubs = (req, res) => {
-	res.send('saved');
+clubsController.destroyClubs = async (req, res) => {
+	try {
+		await Club.findByIdAndDelete(req.params.id);
+
+		res.redirect('/clubs');
+	} catch (e) {
+		console.log(e);
+	}
 };
 
 module.exports = clubsController;

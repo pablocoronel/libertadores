@@ -18,5 +18,5 @@ router.get('/clubs/create', createClubs);
 router.post('/clubs', upload.single('shield'), storeClubs);
 router.get('/clubs/:id/edit', editClubs);
 router.put('/clubs/:id', upload.single('shield'), updateClubs);
-
+router.delete('/clubs/:id', destroyClubs);
 module.exports = router;

@@ -19,4 +19,5 @@ block content
                         td
                             a(href="/clubs/"+club._id+"/edit") Editar
                         td
-                            a(href="/clubs/"+club._id) Borrar
+                            form(action="/clubs/"+club._id+"?_method=DELETE" method="post")
+                                input.btn.btn-link(type="submit" value="Borrar")
