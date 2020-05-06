@@ -48,13 +48,16 @@ clubsController.updateClubs = async (req, res) => {
 		// Subir imagen
 		const imagePath = uploadImage(req, '/images/clubs/');
 
-		const newClub = {
+		const updatedClub = {
 			name: req.body.name,
-			shield: imagePath,
 			country: req.body.country,
 		};
 
-		const club = await Club.findByIdAndUpdate(req.params.id, newClub);
+		if (imagePath !== null) {
+			updatedClub.shield = imagePath;
+		}
+
+		const club = await Club.findByIdAndUpdate(req.params.id, updatedClub);
 
 		res.redirect('/clubs/' + club._id + '/edit');
 	} catch (e) {
