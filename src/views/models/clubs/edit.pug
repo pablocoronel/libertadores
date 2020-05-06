@@ -1,0 +1,23 @@
+extends ../../layouts/admin.pug
+
+block content
+    .container
+        h1 Editar club
+
+        form(action="/clubs/"+club._id+"?_method=PUT" method="POST" enctype="multipart/form-data")
+            .form-group.row
+                label.col-form-label.col-sm-2(for="name") Nombre
+                input.form-control.col-sm-10(type="text" name="name" value=club.name)
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="shield") Escudo
+                img.img-fluid(src=club.shield, alt=club.name)
+
+                input.form-control.col-sm-10(type="file" name="shield")
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="country") País
+                input.form-control.col-sm-10(type="text" name="country" value=club.country)
+
+
+            button.btn.btn-primary(type='submit') Submit

@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 
 // Initials
 const app = express();
@@ -13,6 +14,7 @@ app.set('view engine', 'pug');
 // Middlewares
 app.use(morgan('dev')); // Log de la app
 app.use(express.urlencoded({ extended: false })); // Req.body a JSON
+app.use(methodOverride('_method'));
 
 // Global variables
 

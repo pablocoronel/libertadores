@@ -1,14 +1,12 @@
-const path = require('path');
-const fs = require('fs');
-const multer = require('multer');
-const upload = multer({ dest: path.join(__dirname, '../public/images/clubs') });
-
+const { uploadImage } = require('../helpers/uploadImage');
 const clubsController = {};
 const Club = require('../models/Club');
 
 // Funciones
-clubsController.listClubs = (req, res) => {
-	res.render('models/clubs/list');
+clubsController.listClubs = async (req, res) => {
+	const clubs = await Club.find();
+
+	res.render('models/clubs/list', { clubs });
 };
 
 clubsController.createClubs = (req, res) => {
@@ -16,35 +14,15 @@ clubsController.createClubs = (req, res) => {
 };
 
 clubsController.storeClubs = async (req, res) => {
-	const body = req.body;
-	const file = req.file;
-	const mimeOk = ['image/jpeg', 'image/png'];
-
-	// Image
-	const tempPath = file.path;
-	const newPath = path.join(
-		'images/clubs/',
-		body.name.concat('.', file.originalname.split('.').pop())
-	);
-	const finalPath = path.join(__dirname, '../public', newPath);
-
 	try {
-		// Subida de imagen
-		if (mimeOk.includes(file.mimetype)) {
-			fs.rename(tempPath, finalPath, (err) => {
-				if (err) {
-					throw err;
-				}
-			});
-		} else {
-			throw 'archivo no admitido';
-		}
+		// Subir imagen
+		const imagePath = uploadImage(req, '/images/clubs/');
 
 		// Guardar en BD
 		const club = new Club({
-			name: body.name,
-			shield: newPath,
-			country: body.country,
+			name: req.body.name,
+			shield: imagePath,
+			country: req.body.country,
 		});
 
 		await club.save();
@@ -55,16 +33,37 @@ clubsController.storeClubs = async (req, res) => {
 	res.redirect('/clubs/create');
 };
 
-clubsController.editClubs = (req, res) => {
-	res.render('/models/clubs/edit');
+clubsController.editClubs = async (req, res) => {
+	try {
+		const club = await Club.findById(req.params.id).lean();
+
+		res.render('models/clubs/edit', { club });
+	} catch (e) {
+		console.log(e);
+	}
 };
 
-clubsController.updateClubs = (req, res) => {
-	res.send('saved');
+clubsController.updateClubs = async (req, res) => {
+	try {
+		// Subir imagen
+		const imagePath = uploadImage(req, '/images/clubs/');
+
+		const newClub = {
+			name: req.body.name,
+			shield: imagePath,
+			country: req.body.country,
+		};
+
+		const club = await Club.findByIdAndUpdate(req.params.id, newClub);
+
+		res.redirect('/clubs/' + club._id + '/edit');
+	} catch (e) {
+		console.log(e);
+	}
 };
 
 clubsController.destroyClubs = (req, res) => {
 	res.send('saved');
 };
 
-module.exports = { ...clubsController, upload };
+module.exports = clubsController;

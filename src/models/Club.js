@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose');
 const ClubSchema = new Schema(
 	{
 		name: { type: String, required: true },
-		shield: { type: String, required: true },
+		shield: { type: String, required: false },
 		country: { type: String, required: true },
 	},
 	{ timestamps: true }
