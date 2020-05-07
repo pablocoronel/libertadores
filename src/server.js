@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
+const expressSession = require('express-session');
 const connectFlash = require('connect-flash');
-// const expressSession = require('express-session');
 
 // Initials
 const app = express();
@@ -14,18 +14,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // Middlewares
+app.use(morgan('dev')); // Log de la app
 app.use(express.urlencoded({ extended: false })); // Req.body a JSON
 app.use(methodOverride('_method')); // Importante: usarlo antes de otros middlewares que pidan el verbo
-app.use(morgan('dev')); // Log de la app
-app.use(connectFlash()); // Agrega al request un metodo flash => req.flash()
-// app.use(
-// 	// Agrega al request req.session y mantiene en session
-// 	expressSession({ secret: 'secret', resave: true, saveUninitialized: true })
-// );
+app.use(
+	// Agrega al request req.session y mantiene en session
+	expressSession({ secret: 'hola', resave: true, saveUninitialized: true })
+);
+app.use(connectFlash()); // (necesita express-session) Agrega al request un metodo flash => req.flash()
 
 // Global variables
 app.use((req, res, next) => {
-	// Aca se acceden de forma global a las variables guardadas en flash
+	// Aca se setea en RES de forma global a las variables guardadas en REQ flash
+	res.locals.messageSuccess = req.flash('messageSuccess');
+	res.locals.messageError = req.flash('messageError');
 
 	next();
 });

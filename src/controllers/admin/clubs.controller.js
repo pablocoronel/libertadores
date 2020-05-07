@@ -30,6 +30,7 @@ clubsController.storeClubs = async (req, res) => {
 		console.log(e);
 	}
 
+	req.flash('messageSuccess', 'Club guardado');
 	res.redirect('/admin/clubs/create');
 };
 
@@ -59,6 +60,7 @@ clubsController.updateClubs = async (req, res) => {
 
 		const club = await Club.findByIdAndUpdate(req.params.id, updatedClub);
 
+		req.flash('messageSuccess', 'Club editado');
 		res.redirect('/admin/clubs/' + club._id + '/edit');
 	} catch (e) {
 		console.log(e);
@@ -69,6 +71,7 @@ clubsController.destroyClubs = async (req, res) => {
 	try {
 		await Club.findByIdAndDelete(req.params.id);
 
+		req.flash('messageSuccess', 'Club eliminado');
 		res.redirect('/admin/clubs');
 	} catch (e) {
 		console.log(e);
