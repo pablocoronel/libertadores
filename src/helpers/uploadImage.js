@@ -1,7 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const multer = require('multer');
-const upload = multer({ dest: path.join(__dirname, '../public/images/clubs') });
 
 const uploadImage = (req, imageFolder) => {
 	if (req.file === undefined) {
@@ -27,11 +25,10 @@ const uploadImage = (req, imageFolder) => {
 				throw err;
 			}
 		});
-
 		return newPath;
 	} else {
 		throw 'archivo no admitido';
 	}
 };
 
-module.exports = { upload, uploadImage };
+module.exports = { uploadImage };

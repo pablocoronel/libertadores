@@ -19,7 +19,11 @@ app.use(express.urlencoded({ extended: false })); // Req.body a JSON
 app.use(methodOverride('_method')); // Importante: usarlo antes de otros middlewares que pidan el verbo
 app.use(
 	// Agrega al request req.session y mantiene en session
-	expressSession({ secret: 'hola', resave: true, saveUninitialized: true })
+	expressSession({
+		secret: process.env.SESSION_KEY_SECRET,
+		resave: true,
+		saveUninitialized: true,
+	})
 );
 app.use(connectFlash()); // (necesita express-session) Agrega al request un metodo flash => req.flash()
 

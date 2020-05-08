@@ -1,9 +1,9 @@
 if messageSuccess
     for message in messageSuccess
         .alert.alert-success(role="alert") 
-            | #{messageSuccess}
+            | #{message}
 
 if messageError
     for message in messageError
         .alert.alert-danger(role="alert")
-            | #{messageError}
+            | #{message.msg}
