@@ -15,6 +15,7 @@ html(lang='en')
 
         //- propio
         link(rel="stylesheet" href="/css/admin.css")
+        block customHeadScripts
     body#page-top
         //- Page Wrapper
         #wrapper
@@ -79,3 +80,4 @@ html(lang='en')
                     script(src='/lib/admin-template/vendor/jquery-easing/jquery.easing.min.js')
                     //- Custom scripts for all pages
                     script(src='/lib/admin-template/js/sb-admin-2.min.js')
+                    block customBodyScripts

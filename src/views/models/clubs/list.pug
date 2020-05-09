@@ -19,5 +19,8 @@ block content
                         td
                             a(href="/admin/clubs/"+club._id+"/edit") Editar
                         td
-                            form(action="/admin/clubs/"+club._id+"?_method=DELETE" method="post")
-                                input.btn.btn-link(type="submit" value="Borrar")
+                            form(action="/admin/clubs/"+club._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+club.name+"')")
+                                input.btn.btn-link(type="submit" value="Borrar" )
+
+block customBodyScripts
+    script(src="/js/admin.js")
