@@ -2,7 +2,7 @@ extends ../../layouts/admin
 
 block content
     .container
-        h1 Crear partido
+        h1 Editar partido
 
         form(action="/admin/matches" method="post")
             .card
@@ -11,13 +11,13 @@ block content
                 .card-body
                     .form-group.row
                         label.col-form-label.col-sm-2(for="year") Año
-                        input.form-control.col-sm-10(type="text" name="year")
+                        input.form-control.col-sm-10(type="text" name="year" value=match.year)
                     .form-group.row
                         label.col-form-label.col-sm-2(for="order") Orden
-                        input.form-control.col-sm-10(type="text" name="order")
+                        input.form-control.col-sm-10(type="text" name="order" value=match.order)
                     .form-group.row
                         label.col-form-label.col-sm-2(for="place") Estadio y fecha
-                        input.form-control.col-sm-10(type="text" name="place")
+                        input.form-control.col-sm-10(type="text" name="place" value=match.place)
 
                 .card-header
                     | Local
@@ -26,17 +26,17 @@ block content
                         label.col-form-label.col-sm-2(for="homeClub") Club
                         .form-check
                             select(name="homeClub")
-                                option(value="") Elegir
+                                option(value=match.homeClub) #{match.homeClub.name}
                                 each club in clubs
                                     option(value=club._id) #{club.name}
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="homeScore") Marcador
-                        input.form-control.col-sm-10(type="text" name="homeScore")
+                        input.form-control.col-sm-10(type="text" name="homeScore" value=match.homeScore)
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="homeScorer") Goleadores (a,b)
-                        input.form-control.col-sm-10(type="text" name="homeScorer")
+                        input.form-control.col-sm-10(type="text" name="homeScorer" value=match.homeScorer.join())
 
 
                 .card-header
@@ -46,16 +46,16 @@ block content
                         label.col-form-label.col-sm-2(for="awayClub") Club
                         .form-check
                             select(name="awayClub")
-                                option(value="") Elegir
+                                option(value=match.homeClub) #{match.awayClub.name}
                                 each club in clubs
                                     option(value=club._id) #{club.name}
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="awayScore") Marcador
-                        input.form-control.col-sm-10(type="text" name="awayScore")
+                        input.form-control.col-sm-10(type="text" name="awayScore" value=match.awayScore)
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="awayScorer") Goleadores (a,b)
-                        input.form-control.col-sm-10(type="text" name="awayScorer")
+                        input.form-control.col-sm-10(type="text" name="awayScorer" value=match.awayScorer.join())
 
             button.btn-btn-primary(type="submit") Crear

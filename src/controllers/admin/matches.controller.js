@@ -58,6 +58,20 @@ matchesController.storeMatches = async (req, res) => {
 	}
 };
 
+matchesController.editMatches = async (req, res) => {
+	try {
+		const match = await Match.findById(req.params.id)
+			.populate('homeClub')
+			.populate('awayClub');
+
+		const clubs = await Club.find();
+
+		res.render('models/matches/edit', { match, clubs });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 matchesController.destroyMatches = async (req, res) => {
 	try {
 		await Match.findByIdAndDelete(req.params.id);
