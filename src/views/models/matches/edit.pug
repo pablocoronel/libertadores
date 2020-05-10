@@ -4,7 +4,7 @@ block content
     .container
         h1 Editar partido
 
-        form(action="/admin/matches" method="post")
+        form(action="/admin/matches/"+match._id+"?_method=PUT" method="post")
             .card
                 .card-header
                     | General
@@ -24,11 +24,10 @@ block content
                 .card-body
                     .form-group.row
                         label.col-form-label.col-sm-2(for="homeClub") Club
-                        .form-check
-                            select(name="homeClub")
-                                option(value=match.homeClub) #{match.homeClub.name}
-                                each club in clubs
-                                    option(value=club._id) #{club.name}
+                        select(name="homeClub")
+                            option(value=match.homeClub._id) #{match.homeClub.name}
+                            each club in clubs
+                                option(value=club._id) #{club.name}
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="homeScore") Marcador
@@ -44,11 +43,10 @@ block content
                 .card-body
                     .form-group.row
                         label.col-form-label.col-sm-2(for="awayClub") Club
-                        .form-check
-                            select(name="awayClub")
-                                option(value=match.homeClub) #{match.awayClub.name}
-                                each club in clubs
-                                    option(value=club._id) #{club.name}
+                        select(name="awayClub")
+                            option(value=match.awayClub._id) #{match.awayClub.name}
+                            each club in clubs
+                                option(value=club._id) #{club.name}
 
                     .form-group.row
                         label.col-form-label.col-sm-2(for="awayScore") Marcador

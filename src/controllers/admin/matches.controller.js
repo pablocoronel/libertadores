@@ -72,6 +72,41 @@ matchesController.editMatches = async (req, res) => {
 	}
 };
 
+matchesController.updateMatches = async (req, res) => {
+	try {
+		const homeScorer = req.body.homeScorer.split(',');
+		const awayScorer = req.body.awayScorer.split(',');
+		const {
+			year,
+			place,
+			order,
+			homeClub,
+			homeScore,
+			awayClub,
+			awayScore,
+		} = req.body;
+
+		const updatedMatch = {
+			year,
+			place,
+			order,
+			homeClub,
+			homeScore,
+			homeScorer,
+			awayClub,
+			awayScore,
+			awayScorer,
+		};
+
+		await Match.findByIdAndUpdate(req.params.id, updatedMatch);
+
+		req.flash('messageSuccess', 'Guardado');
+		res.redirect('back');
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 matchesController.destroyMatches = async (req, res) => {
 	try {
 		await Match.findByIdAndDelete(req.params.id);
