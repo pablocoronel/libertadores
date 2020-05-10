@@ -1,10 +1,5 @@
 const editionsController = {};
 
-// WEB
-editionsController.renderEditions = (req, res) => {
-	res.render('editions');
-};
-
 // CRUD
 editionsController.createEditions = (req, res) => {
 	res.render('models/editions/create');

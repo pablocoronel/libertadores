@@ -4,9 +4,13 @@ const Club = require('../../models/Club');
 
 // Funciones
 clubsController.listClubs = async (req, res) => {
-	const clubs = await Club.find();
+	try {
+		const clubs = await Club.find();
 
-	res.render('models/clubs/list', { clubs });
+		res.render('models/clubs/list', { clubs });
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 clubsController.createClubs = (req, res) => {

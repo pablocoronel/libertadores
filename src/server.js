@@ -43,6 +43,7 @@ app.use(require('./routes/editions.routes'));
 app.use(require('./routes/stories.routes'));
 app.use(require('./routes/admin/index.router'));
 app.use(require('./routes/admin/clubs.router'));
+app.use(require('./routes/admin/matches.router'));
 app.use(require('./routes/admin/editions.routes'));
 
 // Static files

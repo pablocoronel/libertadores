@@ -32,7 +32,7 @@ html(lang='en')
                 li.nav-item
                     a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseClubs' aria-expanded='true' aria-controls='collapseClubs')
                         i.fas.fa-fw.fa-folder
-                        span Clubs
+                        span Clubes
                     #collapseClubs.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
                         .bg-white.py-2.collapse-inner.rounded
                             a.collapse-item(href='/admin/clubs') Lista
@@ -43,11 +43,22 @@ html(lang='en')
                 li.nav-item
                     a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseEditions' aria-expanded='true' aria-controls='collapseEditions')
                         i.fas.fa-fw.fa-folder
-                        span Editions
+                        span Ediciones
                     #collapseEditions.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
                         .bg-white.py-2.collapse-inner.rounded
                             a.collapse-item(href='/admin/editions') Lista
                             a.collapse-item(href='/admin/editions/create') Crear
+                //- Divider
+                hr.sidebar-divider.my-0
+
+                li.nav-item
+                    a.nav-link.collapsed(href='#' data-toggle='collapse' data-target='#collapseMatches' aria-expanded='true' aria-controls='collapseMatches')
+                        i.fas.fa-fw.fa-folder
+                        span Partidos
+                    #collapseMatches.collapse(aria-labelledby='headingPages' data-parent='#accordionSidebar')
+                        .bg-white.py-2.collapse-inner.rounded
+                            a.collapse-item(href='/admin/matches') Lista
+                            a.collapse-item(href='/admin/matches/create') Crear
                 //- Divider
                 hr.sidebar-divider.d-none.d-md-block
 

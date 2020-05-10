@@ -1,0 +1,26 @@
+extends ../../layouts/admin
+
+block content
+    .container
+        h1 Lista de partidos
+
+        table.table
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') Nombre
+                    th(scope='col') Editar
+                    th(scope='col') Borrar
+            tbody
+                each match in matches
+                    tr
+                        th(scope='row') 1
+                        td #{match.name}
+                        td
+                            a(href="/admin/matches/"+match._id+"/edit") Editar
+                        td
+                            form(action="/admin/matches/"+match._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+match.name+"')")
+                                input.btn.btn-link(type="submit" value="Borrar" )
+
+block customBodyScripts
+    script(src="/js/admin.js")
