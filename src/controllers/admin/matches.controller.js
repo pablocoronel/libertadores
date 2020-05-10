@@ -58,4 +58,14 @@ matchesController.storeMatches = async (req, res) => {
 	}
 };
 
+matchesController.destroyMatches = async (req, res) => {
+	try {
+		await Match.findByIdAndDelete(req.params.id);
+
+		req.flash('messageSuccess', 'Borrado');
+		res.redirect('back');
+	} catch (error) {
+		console.log(error);
+	}
+};
 module.exports = matchesController;
