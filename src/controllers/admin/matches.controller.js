@@ -1,6 +1,7 @@
 const matchesController = {};
 const Match = require('../../models/Match');
 const Club = require('../../models/Club');
+const messagesForMatchValidation = require('../../helpers/messagesForMatchValidation');
 
 // Funciones
 matchesController.listMatches = async (req, res) => {
@@ -54,7 +55,12 @@ matchesController.storeMatches = async (req, res) => {
 		req.flash('messageSuccess', 'Guardado');
 		res.redirect('back');
 	} catch (error) {
+		messagesForMatchValidation(error);
+
 		console.log(error);
+
+		req.flash('messageErrorFormModel', Object.values(error.errors));
+		res.redirect('back');
 	}
 };
 
@@ -72,7 +78,7 @@ matchesController.editMatches = async (req, res) => {
 	}
 };
 
-matchesController.updateMatches = async (req, res) => {
+matchesController.updateMatches = async (req, res, next) => {
 	try {
 		const homeScorer = req.body.homeScorer.split(',');
 		const awayScorer = req.body.awayScorer.split(',');
@@ -98,12 +104,19 @@ matchesController.updateMatches = async (req, res) => {
 			awayScorer,
 		};
 
-		await Match.findByIdAndUpdate(req.params.id, updatedMatch);
+		await Match.findByIdAndUpdate(req.params.id, updatedMatch, {
+			runValidators: true,
+		});
 
 		req.flash('messageSuccess', 'Guardado');
 		res.redirect('back');
 	} catch (error) {
+		messagesForMatchValidation(error);
+
 		console.log(error);
+
+		req.flash('messageErrorFormModel', Object.values(error.errors));
+		res.redirect('back');
 	}
 };
 
@@ -117,4 +130,5 @@ matchesController.destroyMatches = async (req, res) => {
 		console.log(error);
 	}
 };
+
 module.exports = matchesController;

@@ -32,6 +32,7 @@ app.use((req, res, next) => {
 	// Aca se setea en RES de forma global a las variables guardadas en REQ flash
 	res.locals.messageSuccess = req.flash('messageSuccess');
 	res.locals.messageError = req.flash('messageError');
+	res.locals.messageErrorFormModel = req.flash('messageErrorFormModel');
 
 	next();
 });
