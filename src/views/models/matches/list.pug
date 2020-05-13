@@ -12,9 +12,9 @@ block content
                     th(scope='col') Editar
                     th(scope='col') Borrar
             tbody
-                each match in matches
+                each match, key in matches
                     tr
-                        th(scope='row') 1
+                        th(scope='row') #{key+1}
                         td #{match.year}, #{match.order}
                         td
                             a(href="/admin/matches/"+match._id+"/edit") Editar

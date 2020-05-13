@@ -1,25 +1,25 @@
-extends ../../layouts/admin.pug
+extends ../../layouts/admin
 
 block content
     .container
-        h1 Lista club
+        h1 Lista ediciones
 
         table.table
             thead
                 tr
                     th(scope='col') #
-                    th(scope='col') Nombre
+                    th(scope='col') Año
                     th(scope='col') Editar
                     th(scope='col') Borrar
             tbody
-                each club, key in clubs
+                each edition, key in editions
                     tr
                         th(scope='row') #{key+1}
-                        td #{club.name}
+                        td #{edition.year}
                         td
-                            a(href="/admin/clubs/"+club._id+"/edit") Editar
+                            a(href="/admin/editions/"+edition._id+"/edit") Editar
                         td
-                            form(action="/admin/clubs/"+club._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+club.name+"')")
+                            form(action="/admin/editions/"+edition._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+edition.year+"')")
                                 input.btn.btn-link(type="submit" value="Borrar" )
 
 block customBodyScripts
