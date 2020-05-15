@@ -1,7 +1,10 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema, Types } = require('mongoose');
 
 const MatchSchema = new Schema({
-	year: { type: Number, required: [true, 'Año es un campo obligatorio'] },
+	year: {
+		type: Number,
+		required: [true, 'Año es un campo obligatorio'],
+	},
 	order: { type: Number, required: [true, 'Orden es un campo obligatorio'] },
 	place: {
 		type: String,

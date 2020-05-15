@@ -1,7 +1,7 @@
 const matchesController = {};
 const Match = require('../../models/Match');
 const Club = require('../../models/Club');
-const messagesForMatchValidation = require('../../helpers/messagesForMatchValidation');
+const { matchValidation } = require('../../helpers/messagesValidation');
 
 // Funciones
 matchesController.listMatches = async (req, res) => {
@@ -55,7 +55,7 @@ matchesController.storeMatches = async (req, res) => {
 		req.flash('messageSuccess', 'Guardado');
 		res.redirect('back');
 	} catch (error) {
-		messagesForMatchValidation(error);
+		matchValidation(error);
 
 		console.log(error);
 
@@ -111,7 +111,7 @@ matchesController.updateMatches = async (req, res, next) => {
 		req.flash('messageSuccess', 'Guardado');
 		res.redirect('back');
 	} catch (error) {
-		messagesForMatchValidation(error);
+		matchValidation(error);
 
 		console.log(error);
 
