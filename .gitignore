@@ -105,4 +105,8 @@ dist
 
 # Custom
 src/public/images/clubs/*
-!src/public/images/clubs/.gitkeep 
+!src/public/images/clubs/.gitkeep
+src/public/images/squads/*
+!src/public/images/squads/.gitkeep
+src/public/images/covers/*
+!src/public/images/covers/.gitkeep

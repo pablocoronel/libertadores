@@ -1,5 +1,6 @@
 const { check, validationResult } = require('express-validator');
-const { imageValidate } = require('../helpers/imageValidate');
+
+//? Validaciones con express-validator (no mongoose Schema)
 const validator = {};
 
 validator.storeClub = [
@@ -46,4 +47,29 @@ validator.updateClub = [
 	},
 ];
 
+/**
+ *? Validacion de la imagen recibida
+ * @param {Request} req - request
+ * @param {Result<ValidationError>} errors - variable de errores de express-validator
+ * @param {Boolean} required - indica si el archivo es obligatorio
+ */
+const imageValidate = (req, errors, required) => {
+	const mimeOk = ['image/jpeg', 'image/png'];
+
+	if (req.file === undefined && required) {
+		errors.errors.push({
+			value: '',
+			msg: 'Imagen: Campo obligatorio',
+		});
+	}
+
+	if (req.file !== undefined) {
+		if (!mimeOk.includes(req.file.mimetype)) {
+			errors.errors.push({
+				value: '',
+				msg: 'Imagen: No es un archivo válido',
+			});
+		}
+	}
+};
 module.exports = validator;

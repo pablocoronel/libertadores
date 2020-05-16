@@ -20,7 +20,7 @@ clubsController.createClubs = (req, res) => {
 clubsController.storeClubs = async (req, res) => {
 	try {
 		// Subir imagen
-		const imagePath = uploadImage(req, '/images/clubs/');
+		const imagePath = uploadImage(req, req.body.name, '/images/clubs/');
 
 		// Guardar en BD
 		const club = new Club({
@@ -51,7 +51,7 @@ clubsController.editClubs = async (req, res) => {
 clubsController.updateClubs = async (req, res) => {
 	try {
 		// Subir imagen
-		const imagePath = uploadImage(req, '/images/clubs/');
+		const imagePath = uploadImage(req, req.body.name, '/images/clubs/');
 
 		const updatedClub = {
 			name: req.body.name,
