@@ -11,6 +11,7 @@ const {
 	listEditions,
 	createEditions,
 	storeEditions,
+	destroyEditions,
 } = require('../../controllers/admin/editions.controller');
 
 // Rutas
@@ -21,5 +22,6 @@ router.post(
 	[upload.fields([{ name: 'cover' }, { name: 'squad' }])],
 	storeEditions
 );
+router.delete('/admin/editions/:id', destroyEditions);
 
 module.exports = router;

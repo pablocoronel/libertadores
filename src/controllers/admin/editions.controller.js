@@ -59,4 +59,14 @@ editionsController.storeEditions = async (req, res) => {
 	}
 };
 
+editionsController.destroyEditions = async (req, res) => {
+	try {
+		await Edition.findByIdAndDelete(req.params.id);
+
+		req.flash('messageSuccess', 'Edición borrada');
+		res.redirect('back');
+	} catch (error) {
+		console.log(error);
+	}
+};
 module.exports = editionsController;
