@@ -2,7 +2,6 @@ const editionsController = {};
 const Edition = require('../../models/Edition');
 const Club = require('../../models/Club');
 const { uploadImage } = require('../../helpers/uploadImage');
-const { editionErrorMessage } = require('../../helpers/messageForCastError');
 
 // CRUD
 editionsController.listEditions = async (req, res) => {
@@ -33,8 +32,8 @@ editionsController.storeEditions = async (req, res) => {
 		const { squad, cover } = uploadImage(
 			req,
 			req.body.year,
-			'images/covers',
-			'images/squads'
+			'/images/covers',
+			'/images/squads'
 		);
 
 		const newEdition = new Edition({
@@ -52,10 +51,55 @@ editionsController.storeEditions = async (req, res) => {
 		res.redirect('back');
 	} catch (error) {
 		console.log(error);
+	}
+};
 
-		editionErrorMessage(error);
-		req.flash('messageErrorFormModel', Object.values(error.errors));
+editionsController.editEditions = async (req, res) => {
+	try {
+		const edition = await Edition.findById(req.params.id).populate(
+			'champion'
+		);
+		const clubs = await Club.find();
+
+		res.render('models/editions/edit', { edition, clubs });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+editionsController.updateEditions = async (req, res) => {
+	try {
+		const { year, champion, topScorerName, topScorerGoals } = req.body;
+
+		const defaultImages = await Edition.findById(
+			req.params.id,
+			'cover squad'
+		);
+
+		// * Tiene paths por defecto en caso de no subir ambas imagenes
+		const {
+			cover = defaultImages.cover,
+			squad = defaultImages.squad,
+		} = uploadImage(req, year, '/images/covers', '/images/squads');
+
+		// * nuevo document
+		const updatedEdition = {
+			year,
+			champion,
+			topScorerName,
+			topScorerGoals,
+			cover,
+			squad,
+		};
+
+		await Edition.findByIdAndUpdate(req.params.id, updatedEdition, {
+			runValidators: true,
+		});
+
+		req.flash('messageSuccess', 'Editado');
 		res.redirect('back');
+	} catch (error) {
+		console.log(error);
 	}
 };
 

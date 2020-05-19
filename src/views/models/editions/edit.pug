@@ -2,34 +2,36 @@ extends ../../layouts/admin
 
 block content
     .container
-        h1 Crear edición
+        h1 Editar edición
 
-        form(action="/admin/editions" method="post" enctype="multipart/form-data")
+        form(action="/admin/editions/"+edition._id+"?_method=PUT" method="post" enctype="multipart/form-data")
             .form-group.row
                 label.col-form-label.col-sm-2(for="year") Año
-                input.form-control.col-sm-10(type="text" name="year")
+                input.form-control.col-sm-10(type="text" name="year" value=edition.year)
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="champion") Campeón
                 select(name="champion")
-                    option(value="") Campeón
+                    option(value=edition.champion._id) #{edition.champion.name}
                     each club in clubs
                         option(value=club._id) #{club.name}
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="cover") Portada
+                img.img-fluid(src=edition.cover, alt="cover-"+edition.year)
                 input.form-control.col-sm-10(type="file" name="cover")
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="squad") Plantel
+                img.img-fluid(src=edition.squad, alt="squad-"+edition.year)
                 input.form-control.col-sm-10(type="file" name="squad")
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="topScorerName") Goleador
-                input.form-control.col-sm-10(type="text" name="topScorerName")
+                input.form-control.col-sm-10(type="text" name="topScorerName" value=edition.topScorerName)
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="topScorerGoals") Goleador - cantidad
-                input.form-control.col-sm-10(type="text" name="topScorerGoals")
+                input.form-control.col-sm-10(type="text" name="topScorerGoals" value=edition.topScorerGoals)
 
-            button.btn.btn-primary(type='submit') Crear
+            button.btn.btn-primary(type='submit') Guardar

@@ -28,21 +28,4 @@ const matchErrorMessage = (error) => {
 	}
 };
 
-const editionErrorMessage = (error) => {
-	if (error) {
-		if (error.errors.year) {
-			if (error.errors.year.name == 'CastError') {
-				error.errors.year.message = 'El año debe ser un número';
-			}
-		}
-
-		if (error.errors.champion) {
-			if (error.errors.champion.name == 'CastError') {
-				error.errors.champion.message =
-					'Campeón es un campo obligatorio';
-			}
-		}
-	}
-};
-
-module.exports = { matchErrorMessage, editionErrorMessage };
+module.exports = { matchErrorMessage };

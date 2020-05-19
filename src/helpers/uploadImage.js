@@ -1,6 +1,14 @@
 const path = require('path');
 const fs = require('fs');
 
+/**
+ *
+ * @param {Request} req - Request
+ * @param {String} baseNameImage - Nombre personalizado para la imagen
+ * @param  {String[]} folderImage - Array de carpetas (según orden de declarcion en el metodo fields de Multer)
+ *
+ * @return {Object} - Objeto con rutas relativas a las imagenes subidas (según orden de declarcion en el metodo fields de Multer), las claves son el name del metodo fields de Multer
+ */
 const uploadImage = (req, baseNameImage, ...folderImage) => {
 	if (req.file === undefined && req.files === undefined) {
 		return null;
