@@ -1,10 +1,10 @@
 const { check, validationResult } = require('express-validator');
 
 //? Validaciones con express-validator (no mongoose Schema)
-const validator = {};
+const validation = {};
 
 // Club
-validator.storeClub = [
+validation.storeClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
 	check('shield').custom((value, { req }) => {
 		const mimeOk = ['image/jpeg', 'image/png'];
@@ -36,7 +36,7 @@ validator.storeClub = [
 	},
 ];
 
-validator.updateClub = [
+validation.updateClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
 	check('shield').custom((value, { req }) => {
 		const mimeOk = ['image/jpeg', 'image/png'];
@@ -69,9 +69,120 @@ validator.updateClub = [
 ];
 
 // Match
+validation.storeMatch = [
+	check('year')
+		.isLength({ min: 1 })
+		.withMessage('Año es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Año debe ser un número'),
+	check('order')
+		.isLength({ min: 1 })
+		.withMessage('Orden es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Orden debe ser un número'),
+	check('place')
+		.isLength({ min: 1 })
+		.withMessage('Estadio y Fecha es un campo obligatorio')
+		.bail()
+		.not()
+		.isNumeric()
+		.withMessage('Estadio y Fecha debe ser un texto'),
+	check('homeClub')
+		.isLength({ min: 1 })
+		.withMessage('Club local es un campo obligatorio'),
+	check('homeScore')
+		.isLength({ min: 1 })
+		.withMessage('Marcador local es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Marcador local debe ser un número'),
+	check('homeScorer')
+		.isLength({ min: 1 })
+		.withMessage('Goleadores local es un campo obligatorio'),
+	check('awayClub')
+		.isLength({ min: 1 })
+		.withMessage('Club visitante es un campo obligatorio'),
+	check('awayScore')
+		.isLength({ min: 1 })
+		.withMessage('Marcador visitante es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Marcador visitante debe ser un número'),
+	check('awayScorer')
+		.isLength({ min: 1 })
+		.withMessage('Goleadores visitante es un campo obligatorio'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
+
+validation.updateMatch = [
+	check('year')
+		.isLength({ min: 1 })
+		.withMessage('Año es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Año debe ser un número'),
+	check('order')
+		.isLength({ min: 1 })
+		.withMessage('Orden es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Orden debe ser un número'),
+	check('place')
+		.isLength({ min: 1 })
+		.withMessage('Estadio y Fecha es un campo obligatorio')
+		.bail()
+		.not()
+		.isNumeric()
+		.withMessage('Estadio y Fecha debe ser un texto'),
+	check('homeClub')
+		.isLength({ min: 1 })
+		.withMessage('Club local es un campo obligatorio'),
+	check('homeScore')
+		.isLength({ min: 1 })
+		.withMessage('Marcador local es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Marcador local debe ser un número'),
+	check('homeScorer')
+		.isLength({ min: 1 })
+		.withMessage('Goleadores local es un campo obligatorio'),
+	check('awayClub')
+		.isLength({ min: 1 })
+		.withMessage('Club visitante es un campo obligatorio'),
+	check('awayScore')
+		.isLength({ min: 1 })
+		.withMessage('Marcador visitante es un campo obligatorio')
+		.bail()
+		.isInt()
+		.withMessage('Marcador visitante debe ser un número'),
+	check('awayScorer')
+		.isLength({ min: 1 })
+		.withMessage('Goleadores visitante es un campo obligatorio'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
 
 // Edition
-validator.storeEdition = [
+validation.storeEdition = [
 	check('year')
 		.isLength({ min: 1 })
 		.withMessage('Año es un campo obligatorio')
@@ -124,7 +235,7 @@ validator.storeEdition = [
 	},
 ];
 
-validator.updateEdition = [
+validation.updateEdition = [
 	check('year')
 		.isLength({ min: 1 })
 		.withMessage('Año es un campo obligatorio')
@@ -177,4 +288,4 @@ validator.updateEdition = [
 	},
 ];
 
-module.exports = validator;
+module.exports = validation;

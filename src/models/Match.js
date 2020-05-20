@@ -3,31 +3,31 @@ const { model, Schema, Types } = require('mongoose');
 const MatchSchema = new Schema({
 	year: {
 		type: Number,
-		required: [true, 'Año es un campo obligatorio'],
+		required: true,
 	},
-	order: { type: Number, required: [true, 'Orden es un campo obligatorio'] },
+	order: { type: Number, required: true },
 	place: {
 		type: String,
-		required: [true, 'Estadio y Fecha es un campo obligatorio'],
+		required: true,
 	},
 	homeScore: {
 		type: Number,
-		required: [true, 'Marcador local es un campo obligatorio'],
+		required: true,
 	},
 	awayScore: {
 		type: Number,
-		required: [true, 'Marcador visitante es un campo obligatorio'],
+		required: true,
 	},
 	homeScorer: [
 		{
 			type: String,
-			required: [true, 'Goleadores local es un campo obligatorio'],
+			required: true,
 		},
 	],
 	awayScorer: [
 		{
 			type: String,
-			required: [true, 'Goleadores visitante es un campo obligatorio'],
+			required: true,
 		},
 	],
 
@@ -35,12 +35,12 @@ const MatchSchema = new Schema({
 	homeClub: {
 		type: Schema.Types.ObjectId,
 		ref: 'Club',
-		required: [true, 'Club local es un campo obligatorio'],
+		required: true,
 	},
 	awayClub: {
 		type: Schema.Types.ObjectId,
 		ref: 'Club',
-		required: [true, 'Club visitante es un campo obligatorio'],
+		required: true,
 	},
 });
 

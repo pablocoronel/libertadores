@@ -1,7 +1,6 @@
 const matchesController = {};
 const Match = require('../../models/Match');
 const Club = require('../../models/Club');
-const { matchErrorMessage } = require('../../helpers/messageForCastError');
 
 // Funciones
 matchesController.listMatches = async (req, res) => {
@@ -56,10 +55,6 @@ matchesController.storeMatches = async (req, res) => {
 		res.redirect('back');
 	} catch (error) {
 		console.log(error);
-
-		matchErrorMessage(error);
-		req.flash('messageErrorFormModel', Object.values(error.errors));
-		res.redirect('back');
 	}
 };
 
@@ -111,10 +106,6 @@ matchesController.updateMatches = async (req, res, next) => {
 		res.redirect('back');
 	} catch (error) {
 		console.log(error);
-
-		matchErrorMessage(error);
-		req.flash('messageErrorFormModel', Object.values(error.errors));
-		res.redirect('back');
 	}
 };
 

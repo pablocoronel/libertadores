@@ -7,8 +7,3 @@ if messageError
     for message in messageError
         .alert.alert-danger(role="alert")
             | #{message.msg}
-
-if messageErrorFormModel
-    for error in messageErrorFormModel
-        .alert.alert-danger(role="alert")
-            | #{error.message}
