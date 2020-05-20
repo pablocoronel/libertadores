@@ -6,19 +6,29 @@ const validator = {};
 // Club
 validator.storeClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
+	check('shield').custom((value, { req }) => {
+		const mimeOk = ['image/jpeg', 'image/png'];
+
+		if (req.file === undefined) {
+			throw new Error('Escudo: Campo obligatorio papu');
+		} else if (!mimeOk.includes(req.file.mimetype)) {
+			throw new Error('Escudo: No es una imagen valida');
+		}
+
+		return true;
+	}),
 	check('country')
 		.isLength({ min: 1 })
-		.withMessage('País: Campo obligatorio'),
+		.withMessage('País: Campo obligatorio')
+		.bail()
+		.isAlpha()
+		.withMessage('País: Debe ser un texto'),
 	(req, res, next) => {
 		const errors = validationResult(req);
-
-		// Files
-		imageValidate(req, errors, true);
 
 		// Si hay errores
 		if (!errors.isEmpty()) {
 			req.flash('messageError', errors.array());
-			// res.redirect('/admin/clubs/create');
 			res.redirect('back');
 		} else {
 			next();
@@ -28,19 +38,29 @@ validator.storeClub = [
 
 validator.updateClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
+	check('shield').custom((value, { req }) => {
+		const mimeOk = ['image/jpeg', 'image/png'];
+
+		if (req.file !== undefined) {
+			if (!mimeOk.includes(req.file.mimetype)) {
+				throw new Error('Escudo: No es una imagen valida');
+			}
+		}
+
+		return true;
+	}),
 	check('country')
 		.isLength({ min: 1 })
-		.withMessage('País: Campo obligatorio'),
+		.withMessage('País: Campo obligatorio')
+		.bail()
+		.isAlpha()
+		.withMessage('País: Debe ser un texto'),
 	(req, res, next) => {
 		const errors = validationResult(req);
-
-		// Files
-		imageValidate(req, errors, false);
 
 		// Si hay errores
 		if (!errors.isEmpty()) {
 			req.flash('messageError', errors.array());
-			// res.redirect('/admin/clubs/create');
 			res.redirect('back');
 		} else {
 			next();
@@ -147,7 +167,6 @@ validator.updateEdition = [
 		.withMessage('Goles debe ser un número'),
 	(req, res, next) => {
 		const errors = validationResult(req);
-		console.log(errors);
 
 		if (!errors.isEmpty()) {
 			req.flash('messageError', errors.array());
@@ -158,29 +177,4 @@ validator.updateEdition = [
 	},
 ];
 
-/**
- *? Validacion de la imagen recibida
- * @param {Request} req - request
- * @param {Result<ValidationError>} errors - variable de errores de express-validator
- * @param {Boolean} required - indica si el archivo es obligatorio
- */
-const imageValidate = (req, errors, required) => {
-	const mimeOk = ['image/jpeg', 'image/png'];
-
-	if (req.file === undefined && required) {
-		errors.errors.push({
-			value: '',
-			msg: 'Imagen: Campo obligatorio',
-		});
-	}
-
-	if (req.file !== undefined) {
-		if (!mimeOk.includes(req.file.mimetype)) {
-			errors.errors.push({
-				value: '',
-				msg: 'Imagen: No es un archivo válido',
-			});
-		}
-	}
-};
 module.exports = validator;
