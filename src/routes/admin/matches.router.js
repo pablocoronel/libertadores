@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const router = Router();
+
+// Validaciones
 const validation = require('../../middlewares/validation');
 
 // Funciones

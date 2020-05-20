@@ -3,6 +3,8 @@ const router = Router();
 const path = require('path');
 const multer = require('multer'); // sirve para subir archivos desde form
 const upload = multer({ dest: path.join(__dirname, '../../public/images/clubs') });
+
+// Validaciones
 const validation = require('../../middlewares/validation');
 
 // Funciones

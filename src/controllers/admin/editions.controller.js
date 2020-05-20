@@ -56,14 +56,23 @@ editionsController.storeEditions = async (req, res) => {
 
 editionsController.editEditions = async (req, res) => {
 	try {
-		const edition = await Edition.findById(req.params.id).populate(
-			'champion'
-		);
+		const edition = await Edition.findById(req.params.id)
+			.populate('champion')
+			.orFail();
+
 		const clubs = await Club.find();
 
 		res.render('models/editions/edit', { edition, clubs });
 	} catch (error) {
 		console.log(error);
+
+		if (error.name === 'CastError') {
+			res.redirect('/admin');
+		}
+
+		if (error.name === 'DocumentNotFoundError') {
+			res.redirect('/admin');
+		}
 	}
 };
 

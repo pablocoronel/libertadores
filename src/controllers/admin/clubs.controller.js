@@ -40,11 +40,19 @@ clubsController.storeClubs = async (req, res) => {
 
 clubsController.editClubs = async (req, res) => {
 	try {
-		const club = await Club.findById(req.params.id).lean();
+		const club = await Club.findById(req.params.id).orFail().lean();
 
 		res.render('models/clubs/edit', { club });
-	} catch (e) {
-		console.log(e);
+	} catch (error) {
+		console.log(error);
+
+		if (error.name === 'CastError') {
+			res.redirect('/admin');
+		}
+
+		if (error.name === 'DocumentNotFoundError') {
+			res.redirect('/admin');
+		}
 	}
 };
 

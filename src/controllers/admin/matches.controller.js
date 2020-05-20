@@ -62,13 +62,22 @@ matchesController.editMatches = async (req, res) => {
 	try {
 		const match = await Match.findById(req.params.id)
 			.populate('homeClub')
-			.populate('awayClub');
+			.populate('awayClub')
+			.orFail();
 
 		const clubs = await Club.find();
 
 		res.render('models/matches/edit', { match, clubs });
 	} catch (error) {
 		console.log(error);
+
+		if (error.name === 'CastError') {
+			res.redirect('/admin');
+		}
+
+		if (error.name === 'DocumentNotFoundError') {
+			res.redirect('/admin');
+		}
 	}
 };
 
