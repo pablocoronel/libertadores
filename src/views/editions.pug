@@ -1,4 +1,15 @@
 extends layouts/main.pug
 
+block customHeadScripts
+    link(rel="stylesheet" href="/css/editions.css")
+
 block content
-    p ediciones
+    .container
+        each edition in editions
+            .row.d-flex.justify-content-between.p-2
+                each item in edition
+                    a(href="/editions/"+item._id)
+                        #edition.d-flex.p-2.align-content-center.flex-wrap
+                            p #{item.year}
+                            img.img-fluid(src=item.cover, alt=item.year)
+

@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+	#edition {
+		height: 20vw;
+		width: 15vw;
+		background-color: gray;
+	}
+}
+
+@media (max-width: 768px) {
+	#edition {
+		height: 20vw;
+		width: 90vw;
+		background-color: gray;
+	}
+}
