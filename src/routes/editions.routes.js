@@ -2,9 +2,13 @@ const { Router } = require('express');
 const router = Router();
 
 // Funciones
-const { renderEditions } = require('../controllers/editions.controller');
+const {
+	listEditions,
+	showEdition,
+} = require('../controllers/editions.controller');
 
 // Rutas
-router.get('/editions', renderEditions);
+router.get('/editions', listEditions);
+router.get('/editions/:id', showEdition);
 
 module.exports = router;

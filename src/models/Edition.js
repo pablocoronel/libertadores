@@ -20,10 +20,16 @@ const EditionSchema = new Schema({
 		required: true,
 	},
 
-	// Relacion
+	// Relaciones
 	champion: {
 		type: Schema.Types.ObjectId,
 		ref: 'Club',
+		required: true,
+	},
+
+	final: {
+		type: [Schema.Types.ObjectId],
+		ref: 'Match',
 		required: true,
 	},
 });
