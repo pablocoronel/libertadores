@@ -1,6 +1,7 @@
 const editionsController = {};
 const Edition = require('../../models/Edition');
 const Club = require('../../models/Club');
+const Match = require('../../models/Match');
 const { uploadImage } = require('../../helpers/uploadImage');
 
 // CRUD
@@ -17,8 +18,9 @@ editionsController.listEditions = async (req, res) => {
 editionsController.createEditions = async (req, res) => {
 	try {
 		const clubs = await Club.find();
+		const matches = await Match.find();
 
-		res.render('models/editions/create', { clubs });
+		res.render('models/editions/create', { clubs, matches });
 	} catch (error) {
 		console.log(error);
 	}
@@ -26,7 +28,13 @@ editionsController.createEditions = async (req, res) => {
 
 editionsController.storeEditions = async (req, res) => {
 	try {
-		const { year, champion, topScorerName, topScorerGoals } = req.body;
+		const {
+			year,
+			champion,
+			topScorerName,
+			topScorerGoals,
+			final,
+		} = req.body;
 
 		// subida de imagenes
 		const { squad, cover } = uploadImage(
@@ -43,6 +51,7 @@ editionsController.storeEditions = async (req, res) => {
 			topScorerName,
 			squad,
 			cover,
+			final,
 		});
 
 		await newEdition.save();
@@ -58,11 +67,14 @@ editionsController.editEditions = async (req, res) => {
 	try {
 		const edition = await Edition.findById(req.params.id)
 			.populate('champion')
+			.populate('final')
 			.orFail();
+			console.log(edition.final[0]._id)
 
 		const clubs = await Club.find();
+		const matches = await Match.find();
 
-		res.render('models/editions/edit', { edition, clubs });
+		res.render('models/editions/edit', { edition, clubs, matches });
 	} catch (error) {
 		console.log(error);
 
@@ -78,7 +90,13 @@ editionsController.editEditions = async (req, res) => {
 
 editionsController.updateEditions = async (req, res) => {
 	try {
-		const { year, champion, topScorerName, topScorerGoals } = req.body;
+		const {
+			year,
+			champion,
+			topScorerName,
+			topScorerGoals,
+			final,
+		} = req.body;
 
 		const defaultImages = await Edition.findById(
 			req.params.id,
@@ -99,6 +117,7 @@ editionsController.updateEditions = async (req, res) => {
 			topScorerGoals,
 			cover,
 			squad,
+			final,
 		};
 
 		await Edition.findByIdAndUpdate(req.params.id, updatedEdition, {

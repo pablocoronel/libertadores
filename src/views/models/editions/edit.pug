@@ -17,6 +17,20 @@ block content
                         option(value=club._id) #{club.name}
 
             .form-group.row
+                label.col-form-label.col-sm-2(for="final") Final/es
+                -var isFinal=null
+                -var finalsId = edition.final.map(x => x._id)
+
+                select(name="final" multiple)
+                    each match in matches
+                        if finalsId.includes(match._id)
+                            -isFinal='selected'
+                        else
+                            -isFinal=null
+
+                        option(value=match._id selected=isFinal) Año #{match.year}, Orden #{match.order}
+
+            .form-group.row
                 label.col-form-label.col-sm-2(for="cover") Portada
                 img.img-fluid(src=edition.cover, alt="cover-"+edition.year)
                 input.form-control.col-sm-10(type="file" name="cover")

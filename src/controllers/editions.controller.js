@@ -25,6 +25,7 @@ editionsController.showEdition = async (req, res) => {
 			.populate('champion')
 			.orFail();
 		console.log(edition);
+
 		res.render('edition', { edition });
 	} catch (error) {
 		console.log(error);

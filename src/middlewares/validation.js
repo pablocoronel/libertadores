@@ -192,6 +192,9 @@ validation.storeEdition = [
 	check('champion')
 		.isLength({ min: 1 })
 		.withMessage('Campeón es un campo obligatorio'),
+	check('final')
+		.isLength({ min: 1 })
+		.withMessage('Final/es es un campo obligatorio'),
 	check('cover').custom((value, { req }) => {
 		const mimeOk = ['image/jpeg', 'image/png'];
 
@@ -245,6 +248,9 @@ validation.updateEdition = [
 	check('champion')
 		.isLength({ min: 1 })
 		.withMessage('Campeón es un campo obligatorio'),
+	check('final')
+		.isLength({ min: 1 })
+		.withMessage('Final/es es un campo obligatorio'),
 	check('cover').custom((value, { req }) => {
 		const mimeOk = ['image/jpeg', 'image/png'];
 

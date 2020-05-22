@@ -31,7 +31,7 @@ const MatchSchema = new Schema({
 		},
 	],
 
-	// Relaciones, ref es el nombre del modelo relacionado ([array] para varios)
+	// Relaciones, ref es el nombre del modelo relacionado ([{type:..., ref:...}] para varios)
 	homeClub: {
 		type: Schema.Types.ObjectId,
 		ref: 'Club',

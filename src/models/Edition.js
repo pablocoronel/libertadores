@@ -27,11 +27,14 @@ const EditionSchema = new Schema({
 		required: true,
 	},
 
-	final: {
-		type: [Schema.Types.ObjectId],
-		ref: 'Match',
-		required: true,
-	},
+	// Relaciones, ref es el nombre del modelo relacionado ([{type:..., ref:...}] para varios)
+	final: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'Match',
+			required: true,
+		},
+	],
 });
 
 // Model

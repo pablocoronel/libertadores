@@ -17,6 +17,12 @@ block content
                         option(value=club._id) #{club.name}
 
             .form-group.row
+                label.col-form-label.col-sm-2(for="final") Final/es
+                select(name="final" multiple)
+                    each match in matches
+                        option(value=match._id) Año #{match.year}, Orden #{match.order}
+
+            .form-group.row
                 label.col-form-label.col-sm-2(for="cover") Portada
                 input.form-control.col-sm-10(type="file" name="cover")
 
