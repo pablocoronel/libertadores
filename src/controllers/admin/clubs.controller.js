@@ -2,6 +2,20 @@ const { uploadImage } = require('../../helpers/uploadImage');
 const clubsController = {};
 const Club = require('../../models/Club');
 
+const countries = [
+	'argentina',
+	'bolivia',
+	'brasil',
+	'chile',
+	'colombia',
+	'ecuador',
+	'méxico',
+	'paraguay',
+	'perú',
+	'uruguay',
+	'venezuela',
+];
+
 // Funciones
 clubsController.listClubs = async (req, res) => {
 	try {
@@ -14,7 +28,7 @@ clubsController.listClubs = async (req, res) => {
 };
 
 clubsController.createClubs = (req, res) => {
-	res.render('models/clubs/create');
+	res.render('models/clubs/create', { countries });
 };
 
 clubsController.storeClubs = async (req, res) => {
@@ -42,7 +56,7 @@ clubsController.editClubs = async (req, res) => {
 	try {
 		const club = await Club.findById(req.params.id).orFail().lean();
 
-		res.render('models/clubs/edit', { club });
+		res.render('models/clubs/edit', { club, countries });
 	} catch (error) {
 		console.log(error);
 

@@ -21,7 +21,7 @@ validation.storeClub = [
 		.isLength({ min: 1 })
 		.withMessage('País: Campo obligatorio')
 		.bail()
-		.isAlpha()
+		.isAlpha('es-ES')
 		.withMessage('País: Debe ser un texto'),
 	(req, res, next) => {
 		const errors = validationResult(req);
@@ -53,7 +53,7 @@ validation.updateClub = [
 		.isLength({ min: 1 })
 		.withMessage('País: Campo obligatorio')
 		.bail()
-		.isAlpha()
+		.isAlpha('es-ES')
 		.withMessage('País: Debe ser un texto'),
 	(req, res, next) => {
 		const errors = validationResult(req);

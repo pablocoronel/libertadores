@@ -17,7 +17,10 @@ block content
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="country") País
-                input.form-control.col-sm-10(type="text" name="country" value=club.country)
+                select(name="country")
+                    option(value=club.country) #{club.country}
+                    each country in countries
+                        option(value=country) #{country}
 
 
             button.btn.btn-primary(type='submit') Guardar
