@@ -1,4 +1,4 @@
-const { model, Schema, Types } = require('mongoose');
+const { model, Schema } = require('mongoose');
 
 const MatchSchema = new Schema({
 	year: {
@@ -10,6 +10,7 @@ const MatchSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	comment: { type: String },
 	homeScore: {
 		type: Number,
 		required: true,
