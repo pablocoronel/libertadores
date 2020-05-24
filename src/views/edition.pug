@@ -27,7 +27,9 @@ block content
                     .col-6
                         img.img-responsive(src=match.homeClub.shield, alt=match.homeClub.name)
                         p #{match.homeClub.name}
-                        p #{match.homeClub.country}
+                        -
+                            var countryHome = match.homeClub.country.slice(0,3).toUpperCase()
+                        p (#{countryHome})
                         p #{match.homeScore}
                         ul
                             each goal in match.homeScorer
@@ -36,9 +38,20 @@ block content
                     .col-6
                         img.img-responsive(src=match.awayClub.shield, alt=match.awayClub.name)
                         p #{match.awayClub.name}
-                        p #{match.awayClub.country}
+                        -
+                            var awayCountry = match.awayClub.country.slice(0,3).toUpperCase()
+                        p (#{awayCountry})
                         p #{match.awayScore}
                         ul
                             each goal in match.awayScorer
                                 li #{goal}
+                    .row
+                        .col-12
+                            span #{match.comment}
                     hr
+
+        .row
+            .col-12
+                p Goleador
+                p #{edition.topScorerName}
+                p #{edition.topScorerGoals}
