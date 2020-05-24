@@ -23,8 +23,12 @@ editionsController.showEdition = async (req, res) => {
 	try {
 		const edition = await Edition.findById(req.params.id)
 			.populate('champion')
+			.populate({
+				path: 'final',
+				populate: [{ path: 'homeClub awayClub' }],
+				options: { sort: { order: 1 } },
+			})
 			.orFail();
-		console.log(edition);
 
 		res.render('edition', { edition });
 	} catch (error) {
@@ -34,7 +38,7 @@ editionsController.showEdition = async (req, res) => {
 			error.name == 'DocumentNotFoundError' ||
 			error.name == 'CastError'
 		) {
-			res.redirect('/');
+			res.redirect('/editions');
 		}
 	}
 };

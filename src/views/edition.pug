@@ -10,4 +10,35 @@ block content
                 h1 Copa Libertadores #{edition.year}
         .row
             .col-12
-                
+                p #{edition.champion.name}
+                img.img-responsive(src=edition.champion.shield)
+                p #{edition.champion.country}
+        .row
+            .col-12.text-center
+                img.img-responsive(src=edition.squad)
+
+        .row
+            .col-12
+                h3 Final
+        .row
+            .col-12
+                each match in edition.final
+                    p #{match.place}
+                    .col-6
+                        img.img-responsive(src=match.homeClub.shield, alt=match.homeClub.name)
+                        p #{match.homeClub.name}
+                        p #{match.homeClub.country}
+                        p #{match.homeScore}
+                        ul
+                            each goal in match.homeScorer
+                                li #{goal}
+
+                    .col-6
+                        img.img-responsive(src=match.awayClub.shield, alt=match.awayClub.name)
+                        p #{match.awayClub.name}
+                        p #{match.awayClub.country}
+                        p #{match.awayScore}
+                        ul
+                            each goal in match.awayScorer
+                                li #{goal}
+                    hr

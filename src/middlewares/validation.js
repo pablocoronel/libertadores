@@ -7,7 +7,7 @@ const validation = {};
 validation.storeClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
 	check('shield').custom((value, { req }) => {
-		const mimeOk = ['image/jpeg', 'image/png'];
+		const mimeOk = ['image/jpeg', 'image/png', 'image/gif'];
 
 		if (req.file === undefined) {
 			throw new Error('Escudo: Campo obligatorio papu');
@@ -39,7 +39,7 @@ validation.storeClub = [
 validation.updateClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
 	check('shield').custom((value, { req }) => {
-		const mimeOk = ['image/jpeg', 'image/png'];
+		const mimeOk = ['image/jpeg', 'image/png', 'image/gif'];
 
 		if (req.file !== undefined) {
 			if (!mimeOk.includes(req.file.mimetype)) {

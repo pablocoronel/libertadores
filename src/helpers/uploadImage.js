@@ -15,7 +15,7 @@ const uploadImage = (req, baseNameImage, ...folderImage) => {
 	}
 
 	const file = req.file || req.files;
-	const mimeOk = ['image/jpeg', 'image/png'];
+	const mimeOk = ['image/jpeg', 'image/png', 'image/gif'];
 
 	//* Varias imagenes
 	if (req.files !== undefined) {
