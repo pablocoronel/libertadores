@@ -7,15 +7,16 @@ block content
     .container
         .row
             .col-12.text-center
-                h1 Copa Libertadores #{edition.year}
+                h1 Campeón Copa Libertadores #{edition.year}
         .row
             .col-12
                 p #{edition.champion.name}
-                img.img-responsive(src=edition.champion.shield)
-                p #{edition.champion.country}
+                img.img-responsive(src=edition.champion.shield alt=edition.champion.name)
+                p #{edition.champion.country} 
+                img(src="/images/flags/"+edition.champion.country+".png", alt=edition.champion.country)
         .row
             .col-12.text-center
-                img.img-responsive(src=edition.squad)
+                img.img-responsive(src=edition.squad alt=edition.champion.name+"-squad")
 
         .row
             .col-12
