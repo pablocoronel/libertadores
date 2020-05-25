@@ -217,6 +217,12 @@ validation.storeEdition = [
 			return true;
 		}
 	}),
+	check('video')
+		.isLength({ min: 1 })
+		.withMessage('Video es un campo obligatorio')
+		.bail()
+		.isURL()
+		.withMessage('Video debe ser una URL válida'),
 	check('topScorerName')
 		.isLength({ min: 1 })
 		.withMessage('Goleador nombre es un campo obligatorio'),
@@ -273,6 +279,12 @@ validation.updateEdition = [
 
 		return true;
 	}),
+	check('video')
+		.isLength({ min: 1 })
+		.withMessage('Video es un campo obligatorio')
+		.bail()
+		.isURL()
+		.withMessage('Video debe ser una URL válida'),
 	check('topScorerName')
 		.isLength({ min: 1 })
 		.withMessage('Goleador nombre es un campo obligatorio'),

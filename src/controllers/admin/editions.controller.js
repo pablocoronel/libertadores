@@ -31,6 +31,7 @@ editionsController.storeEditions = async (req, res) => {
 		const {
 			year,
 			champion,
+			video,
 			topScorerName,
 			topScorerGoals,
 			final,
@@ -47,6 +48,7 @@ editionsController.storeEditions = async (req, res) => {
 		const newEdition = new Edition({
 			year,
 			champion,
+			video,
 			topScorerGoals,
 			topScorerName,
 			squad,
@@ -69,7 +71,6 @@ editionsController.editEditions = async (req, res) => {
 			.populate('champion')
 			.populate('final')
 			.orFail();
-			console.log(edition.final[0]._id)
 
 		const clubs = await Club.find();
 		const matches = await Match.find();
@@ -93,6 +94,7 @@ editionsController.updateEditions = async (req, res) => {
 		const {
 			year,
 			champion,
+			video,
 			topScorerName,
 			topScorerGoals,
 			final,
@@ -113,6 +115,7 @@ editionsController.updateEditions = async (req, res) => {
 		const updatedEdition = {
 			year,
 			champion,
+			video,
 			topScorerName,
 			topScorerGoals,
 			cover,

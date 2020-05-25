@@ -41,6 +41,11 @@ block content
                 input.form-control.col-sm-10(type="file" name="squad")
 
             .form-group.row
+                label.col-form-label.col-sm-2(for="video") Video
+                iframe(width="560" height="315" src=edition.video frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                input.form-control.col-sm-10(type="text" name="video" value=edition.video)
+
+            .form-group.row
                 label.col-form-label.col-sm-2(for="topScorerName") Goleador
                 input.form-control.col-sm-10(type="text" name="topScorerName" value=edition.topScorerName)
 

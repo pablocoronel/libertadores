@@ -11,6 +11,7 @@ const EditionSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	video: { type: String, required: true },
 	topScorerName: {
 		type: String,
 		required: true,
