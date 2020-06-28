@@ -1,13 +1,21 @@
+/*? body */
 body {
 	min-height: 100vh;
 }
 
-/* logo del manu de navegacion */
+/*? navegacion */
+nav{
+	background-color: rgb(0, 0, 0);
+}
 nav img {
 	height: 40px;
 }
 
+#navbarNav a{
+	color: rgb(228, 177, 10);
+}
+
+/*? Footer */
 footer {
-	background-color: bisque;
-	height: 200px;
+	background-color: rgb(0, 0, 0);
 }
