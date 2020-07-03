@@ -12,6 +12,74 @@
 		height: 20vw;
 		width: 90vw;
 		background-color: rgb(0, 0, 0);
+	}
 }
 
 /* individual */
+
+/* titulo */
+h1 {
+	font-size: 3vw;
+	margin-top: 3vh;
+	font-family: 'Evolve';
+	font-weight: 700;
+	margin-bottom: 3vh;
+}
+
+#squad {
+	border: 5px solid rgba(212, 195, 36, 0.952);
+}
+
+#final-title {
+	height: 5vh;
+	width: 100vw;
+	background-color: rgb(216, 216, 201);
+	margin-top: 5vh;
+	font-family: Lorenza;
+	font-size: 5vw;
+	text-align: center;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+#container-champion {
+	background-color: rgb(233, 233, 222);
+	height: 35vh;
+	text-align: center;
+	padding-top: 1vh;
+}
+
+#container-champion #copa {
+	max-height: 12vh;
+	margin-bottom: 1vh;
+}
+
+#container-champion #champion-name,
+#country-name {
+	text-transform: capitalize;
+}
+
+/** video */
+.iframe-container {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	padding-top: 56.25%;
+}
+
+.responsive-iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+	h1 {
+		font-size: 10vw;
+	}
+}

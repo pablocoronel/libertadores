@@ -8,25 +8,30 @@ block content
         .row
             .col-12.text-center
                 h1 Campeón Copa Libertadores #{edition.year}
-        .row
-            .col-12
-                p #{edition.champion.name}
-                img.img-responsive(src=edition.champion.shield alt=edition.champion.name)
-                p #{edition.champion.country} 
-                img(src="/images/flags/"+edition.champion.country+".png", alt=edition.champion.country)
-        .row
-            .col-12.text-center
-                img.img-responsive(src=edition.squad alt=edition.champion.name+"-squad")
 
         .row
-            .col-12
-                h3 Final
+            .col-12.text-center
+                img.img-fluid.rounded#squad(src=edition.squad alt=edition.champion.name+"-squad")
+
         .row
-            .col-12
+            .col-12#final-title
+                h3 Final
+
+        .row
+            .col-12.col-md-3#container-champion
+                h5 Campeón #{edition.year}
+                img.img-fluid#copa(src="/images/copa-libertadores.png")
+                img.img-fluid(src=edition.champion.shield alt=edition.champion.name)
+                h5#champion-name #{edition.champion.name}
+                div
+                    h6#country-name (#{edition.champion.country}) 
+                    img(src="/images/flags/"+edition.champion.country+".png", alt=edition.champion.country)
+
+            .col-12.col-md-9
                 each match in edition.final
                     p #{match.place}
                     .col-6
-                        img.img-responsive(src=match.homeClub.shield, alt=match.homeClub.name)
+                        img.img-fluid(src=match.homeClub.shield, alt=match.homeClub.name)
                         p #{match.homeClub.name}
                         -
                             var countryHome = match.homeClub.country.slice(0,3).toUpperCase()
@@ -37,7 +42,7 @@ block content
                                 li #{goal}
 
                     .col-6
-                        img.img-responsive(src=match.awayClub.shield, alt=match.awayClub.name)
+                        img.img-fluid(src=match.awayClub.shield, alt=match.awayClub.name)
                         p #{match.awayClub.name}
                         -
                             var awayCountry = match.awayClub.country.slice(0,3).toUpperCase()
@@ -59,4 +64,5 @@ block content
 
         .row
             .col-12
-                iframe(width="560" height="315" src=edition.video frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                .iframe-container
+                    iframe.responsive-iframe(width="56" height="315" src=edition.video frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)

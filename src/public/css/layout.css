@@ -1,18 +1,37 @@
+/*?  fonts */
+@font-face {
+	font-family: 'Liberation';
+	src: url('./../fonts/LiberationSerif-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Lorenza';
+	src: url('./../fonts/LORENZA.otf');
+}
+
+@font-face {
+	font-family: 'Evolve';
+	src: url('./../fonts/MADE Evolve Sans Thin (PERSONAL USE).otf');
+}
+
 /*? body */
 body {
 	min-height: 100vh;
 }
 
 /*? navegacion */
-nav{
+nav {
 	background-color: rgb(0, 0, 0);
 }
 nav img {
 	height: 40px;
 }
 
-#navbarNav a{
+#navbarNav a {
 	color: rgb(228, 177, 10);
+	font-family: Lorenza;
+	font-size: 20px;
+	letter-spacing: 1px;
 }
 
 /*? Footer */
