@@ -24,37 +24,52 @@ block content
                 img.img-fluid(src=edition.champion.shield alt=edition.champion.name)
                 h5#champion-name #{edition.champion.name}
                 div
-                    h6#country-name (#{edition.champion.country}) 
                     img(src="/images/flags/"+edition.champion.country+".png", alt=edition.champion.country)
+                    h6#country-name (#{edition.champion.country}) 
 
-            .col-12.col-md-9
+            .col-12.col-md-7.offset-md-1#container-finals
                 each match in edition.final
-                    p #{match.place}
-                    .col-6
-                        img.img-fluid(src=match.homeClub.shield, alt=match.homeClub.name)
-                        p #{match.homeClub.name}
-                        -
-                            var countryHome = match.homeClub.country.slice(0,3).toUpperCase()
-                        p (#{countryHome})
-                        p #{match.homeScore}
-                        ul
-                            each goal in match.homeScorer
-                                li #{goal}
+                    #match-date
+                        p #{match.place}
 
-                    .col-6
-                        img.img-fluid(src=match.awayClub.shield, alt=match.awayClub.name)
-                        p #{match.awayClub.name}
-                        -
-                            var awayCountry = match.awayClub.country.slice(0,3).toUpperCase()
-                        p (#{awayCountry})
-                        p #{match.awayScore}
-                        ul
-                            each goal in match.awayScorer
-                                li #{goal}
+                    //- escudo
+                    .row
+                        .col-5.d-flex.align-items-center
+                            img.img-fluid(src=match.homeClub.shield, alt=match.homeClub.name)
+                            p.club-name.p-2 #{match.homeClub.name}
+
+                        #score.col-2.d-flex.align-items-center.justify-content-center
+                            p #{match.awayScore} - #{match.homeScore}
+
+                        .col-5.d-flex.align-items-center.justify-content-end
+                            p.club-name.p-2 #{match.awayClub.name}
+                            img.img-fluid(src=match.awayClub.shield, alt=match.awayClub.name)
+
+                    //- pais
+                    .row#country-name
+                        .col-6.d-flex.justify-content-start
+                            -var countryHome = match.homeClub.country.slice(0,3).toUpperCase()
+                            p (#{countryHome})
+                        .col-6.d-flex.justify-content-end
+                            -var awayCountry = match.awayClub.country.slice(0,3).toUpperCase()
+                            p (#{awayCountry})
+
+                    //- goles
+                    .row
+                        .col-6
+                            ul
+                                each goal in match.homeScorer
+                                    li #{goal}
+                        .col-6
+                            ul
+                                each goal in match.awayScorer
+                                    li #{goal}
+
+                    //- comentario adicional
                     .row
                         .col-12
                             span #{match.comment}
-                    hr
+
 
         .row
             .col-12

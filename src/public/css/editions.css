@@ -59,6 +59,35 @@ h1 {
 	text-transform: capitalize;
 }
 
+#container-finals #match-date {
+	height: 5vh;
+	width: 100%;
+	background-color: rgb(94, 201, 201);
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+	font-family: Lorenza;
+	text-transform: capitalize;
+	font-size: 3vh;
+	text-align: center;
+}
+
+#container-finals #score {
+	font-weight: bold;
+}
+
+#container-finals #country-name {
+	border-bottom: 1px solid #ebe7e7;
+}
+
+#container-finals .club-name {
+	text-transform: capitalize;
+}
+
+#container-finals ul {
+	list-style: none;
+	text-transform: capitalize;
+}
+
 /** video */
 .iframe-container {
 	position: relative;
