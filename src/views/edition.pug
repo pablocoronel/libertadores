@@ -72,10 +72,17 @@ block content
 
 
         .row
-            .col-12
-                p Goleador
-                p #{edition.topScorerName}
-                p #{edition.topScorerGoals}
+            .col-12#topscorer-title
+                h3 Goleador
+        .row#topscorer-data
+            .col-12.col-md-4
+                span #{edition.topScorerName} 
+                img.img-fluid(src="/images/flags/"+edition.topScorerNationality+".png" alt=edition.topScorerNationality)
+            .col-12.col-md-4
+                span #{edition.topScorerClub}
+                img.img-fluid(src="/images/flags/"+edition.topScorerCountryClub+".png", alt=edition.topScorerCountryClub)
+            .col-12.col-md-4
+                p #{edition.topScorerGoals} goles
 
         .row
             .col-12
