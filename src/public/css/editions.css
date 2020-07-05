@@ -1,17 +1,21 @@
 /*? listado */
-@media (min-width: 768px) {
-	#edition {
-		height: 20vw;
-		width: 15vw;
-		background-color: rgb(0, 0, 0);
-	}
+#edition {
+	height: 20vw;
+	width: 15vw;
+	background-color: rgb(0, 0, 0);
+}
+
+#edition img{
+	border: 1px solid #797936;
+	border-radius: 5px;
 }
 
 @media (max-width: 768px) {
 	#edition {
-		height: 20vw;
-		width: 90vw;
+		height: 50vw;
+		width: 95vw;
 		background-color: rgb(0, 0, 0);
+		margin-bottom: 1vh;
 	}
 }
 
