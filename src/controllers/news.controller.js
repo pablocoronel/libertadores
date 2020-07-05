@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const dateFormat = require('dateformat');
 const newsController = {};
 
 // API google news
@@ -18,6 +19,10 @@ newsController.renderNews = async (req, res) => {
 		const news = await res.json();
 
 		if (news.status === 'ok') {
+			news.articles.map((item) => {
+				item.publishedAt = dateFormat(item.publishedAt, 'dd/mm/yyyy');
+			});
+
 			articles = news.articles;
 		}
 	} catch (error) {
