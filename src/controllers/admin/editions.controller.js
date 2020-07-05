@@ -4,6 +4,20 @@ const Club = require('../../models/Club');
 const Match = require('../../models/Match');
 const { uploadImage } = require('../../helpers/uploadImage');
 
+const countries = [
+	'argentina',
+	'bolivia',
+	'brasil',
+	'chile',
+	'colombia',
+	'ecuador',
+	'méxico',
+	'paraguay',
+	'perú',
+	'uruguay',
+	'venezuela',
+];
+
 // CRUD
 editionsController.listEditions = async (req, res) => {
 	try {
@@ -20,7 +34,11 @@ editionsController.createEditions = async (req, res) => {
 		const clubs = await Club.find();
 		const matches = await Match.find();
 
-		res.render('models/editions/create', { clubs, matches });
+		res.render('models/editions/create', {
+			clubs,
+			matches,
+			countries,
+		});
 	} catch (error) {
 		console.log(error);
 	}
@@ -33,6 +51,9 @@ editionsController.storeEditions = async (req, res) => {
 			champion,
 			video,
 			topScorerName,
+			topScorerNationality,
+			topScorerClub,
+			topScorerCountryClub,
 			topScorerGoals,
 			final,
 		} = req.body;
@@ -49,8 +70,11 @@ editionsController.storeEditions = async (req, res) => {
 			year,
 			champion,
 			video,
-			topScorerGoals,
 			topScorerName,
+			topScorerNationality,
+			topScorerClub,
+			topScorerCountryClub,
+			topScorerGoals,
 			squad,
 			cover,
 			final,
@@ -75,7 +99,12 @@ editionsController.editEditions = async (req, res) => {
 		const clubs = await Club.find();
 		const matches = await Match.find();
 
-		res.render('models/editions/edit', { edition, clubs, matches });
+		res.render('models/editions/edit', {
+			edition,
+			clubs,
+			matches,
+			countries,
+		});
 	} catch (error) {
 		console.log(error);
 
@@ -96,6 +125,9 @@ editionsController.updateEditions = async (req, res) => {
 			champion,
 			video,
 			topScorerName,
+			topScorerNationality,
+			topScorerClub,
+			topScorerCountryClub,
 			topScorerGoals,
 			final,
 		} = req.body;
@@ -117,6 +149,9 @@ editionsController.updateEditions = async (req, res) => {
 			champion,
 			video,
 			topScorerName,
+			topScorerNationality,
+			topScorerClub,
+			topScorerCountryClub,
 			topScorerGoals,
 			cover,
 			squad,

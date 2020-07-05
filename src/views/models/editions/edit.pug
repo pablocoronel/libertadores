@@ -46,8 +46,26 @@ block content
                 input.form-control.col-sm-10(type="text" name="video" value=edition.video)
 
             .form-group.row
-                label.col-form-label.col-sm-2(for="topScorerName") Goleador
+                label.col-form-label.col-sm-2(for="topScorerName") Goleador - nombre
                 input.form-control.col-sm-10(type="text" name="topScorerName" value=edition.topScorerName)
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="topScorerNationality") Goleador - nacionalidad
+                select(name="topScorerNationality")
+                    option(value=edition.topScorerNationality) #{edition.topScorerNationality}
+                    each country in countries
+                        option(value=country) #{country}
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="topScorerClub") Goleador - club
+                input.form-control.col-sm-10(type="text" name="topScorerClub" value=edition.topScorerClub)
+
+            .form-group.row
+                label.col-form-label.col-sm-2(for="topScorerCountryClub") Goleador - país del club
+                select(name="topScorerCountryClub")
+                    option(value=edition.topScorerCountryClub) #{edition.topScorerCountryClub}
+                    each country in countries
+                        option(value=country) #{country}
 
             .form-group.row
                 label.col-form-label.col-sm-2(for="topScorerGoals") Goleador - cantidad

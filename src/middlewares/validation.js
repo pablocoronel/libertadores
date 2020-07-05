@@ -226,6 +226,15 @@ validation.storeEdition = [
 	check('topScorerName')
 		.isLength({ min: 1 })
 		.withMessage('Goleador nombre es un campo obligatorio'),
+	check('topScorerNationality')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - nacionalidad: Campo obligatorio'),
+	check('topScorerClub')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - club: Campo obligatorio'),
+	check('topScorerCountryClub')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - país del club: Campo obligatorio'),
 	check('topScorerGoals')
 		.isLength({ min: 1 })
 		.withMessage('Goles es un campo obligatorio')
@@ -288,6 +297,15 @@ validation.updateEdition = [
 	check('topScorerName')
 		.isLength({ min: 1 })
 		.withMessage('Goleador nombre es un campo obligatorio'),
+	check('topScorerNationality')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - nacionalidad: Campo obligatorio'),
+	check('topScorerClub')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - club: Campo obligatorio'),
+	check('topScorerCountryClub')
+		.isLength({ min: 1 })
+		.withMessage('Goleador - país del club: Campo obligatorio'),
 	check('topScorerGoals')
 		.isLength({ min: 1 })
 		.withMessage('Goles es un campo obligatorio')

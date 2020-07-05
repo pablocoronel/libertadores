@@ -16,6 +16,9 @@ const EditionSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	topScorerNationality: { type: String, required: true },
+	topScorerClub: { type: String, required: true },
+	topScorerCountryClub: { type: String, required: true },
 	topScorerGoals: {
 		type: Number,
 		required: true,
