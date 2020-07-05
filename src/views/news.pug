@@ -1,4 +1,16 @@
 extends layouts/main.pug
 
 block content
-    p noticias
+    .container
+        .row
+            each article in articles
+                .col-12.col-md-4
+                    .card
+                        a(href=article.url target="_blank")
+                            img.card-img-bottom(src=article.urlToImage alt="")
+                        .card-body
+                            a(href=article.url target="_blank")
+                                h5.card-title #{article.title}
+                            p.card-text #{article.description}
+                            p.card-text
+                                small.text-muted #{article.publishedAt}
