@@ -6,7 +6,7 @@ const newsController = {};
 var urlGoogleNews =
 	'http://newsapi.org/v2/everything?' +
 	'qInTitle=libertadores&' +
-	'sortBy=relevancy&' +
+	'sortBy=publishedAt&' +
 	'language=es&' +
 	'page=1&' +
 	'apiKey=2a9124124e264915a0da4725646e9214';
