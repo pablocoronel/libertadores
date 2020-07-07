@@ -1,0 +1,19 @@
+extends layouts/main
+
+block content
+    .container
+        form(method="POST" action="/signup/save")
+            .form-group.row
+                label.col-12.col-sm-2(for='email') Email
+                .col-12.col-sm-10
+                    input.form-control(type='email' name="email" placeholder='Email')
+            .form-group.row
+                label.col-12.col-sm-2(for='password') Contraseña
+                .col-12.col-sm-10
+                    input.form-control(type='password' name="password" placeholder='Password')
+            .form-group.row
+                label.col-12.col-sm-2(for='confirmPassword') Confirmar Contraseña
+                .col-12.col-sm-10
+                    input.form-control(type='password' name="confirmPassword" placeholder='Password')
+
+            button.btn.btn-primary(type='submit') Registrarme

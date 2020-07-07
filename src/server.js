@@ -46,6 +46,7 @@ app.use(require('./routes/admin/index.router'));
 app.use(require('./routes/admin/clubs.router'));
 app.use(require('./routes/admin/matches.router'));
 app.use(require('./routes/admin/editions.routes'));
+app.use(require('./routes/authentication.routes'));
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
