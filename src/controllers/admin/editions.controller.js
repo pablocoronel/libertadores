@@ -23,7 +23,7 @@ editionsController.listEditions = async (req, res) => {
 	try {
 		const editions = await Edition.find();
 
-		res.render('models/editions/list', { editions });
+		res.render('admin/editions/list', { editions });
 	} catch (error) {
 		console.log(error);
 	}
@@ -34,7 +34,7 @@ editionsController.createEditions = async (req, res) => {
 		const clubs = await Club.find();
 		const matches = await Match.find();
 
-		res.render('models/editions/create', {
+		res.render('admin/editions/create', {
 			clubs,
 			matches,
 			countries,
@@ -99,7 +99,7 @@ editionsController.editEditions = async (req, res) => {
 		const clubs = await Club.find();
 		const matches = await Match.find();
 
-		res.render('models/editions/edit', {
+		res.render('admin/editions/edit', {
 			edition,
 			clubs,
 			matches,

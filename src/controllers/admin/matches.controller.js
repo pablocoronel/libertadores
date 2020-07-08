@@ -7,7 +7,7 @@ matchesController.listMatches = async (req, res) => {
 	try {
 		const matches = await Match.find();
 
-		res.render('models/matches/list', { matches });
+		res.render('admin/matches/list', { matches });
 	} catch (error) {
 		console.log(error);
 	}
@@ -17,7 +17,7 @@ matchesController.createMatches = async (req, res) => {
 	try {
 		const clubs = await Club.find();
 
-		res.render('models/matches/create', { clubs });
+		res.render('admin/matches/create', { clubs });
 	} catch (error) {
 		console.log(error);
 	}
@@ -69,7 +69,7 @@ matchesController.editMatches = async (req, res) => {
 
 		const clubs = await Club.find();
 
-		res.render('models/matches/edit', { match, clubs });
+		res.render('admin/matches/edit', { match, clubs });
 	} catch (error) {
 		console.log(error);
 

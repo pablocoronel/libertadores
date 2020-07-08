@@ -1,7 +1,7 @@
 const indexController = {};
 
 indexController.renderIndex = (req, res) => {
-	res.render('models/index/index');
+	res.render('admin/index/index');
 };
 
 module.exports = indexController;

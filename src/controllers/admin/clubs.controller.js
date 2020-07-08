@@ -21,14 +21,14 @@ clubsController.listClubs = async (req, res) => {
 	try {
 		const clubs = await Club.find();
 
-		res.render('models/clubs/list', { clubs });
+		res.render('admin/clubs/list', { clubs });
 	} catch (error) {
 		console.log(error);
 	}
 };
 
 clubsController.createClubs = (req, res) => {
-	res.render('models/clubs/create', { countries });
+	res.render('admin/clubs/create', { countries });
 };
 
 clubsController.storeClubs = async (req, res) => {
@@ -56,7 +56,7 @@ clubsController.editClubs = async (req, res) => {
 	try {
 		const club = await Club.findById(req.params.id).orFail().lean();
 
-		res.render('models/clubs/edit', { club, countries });
+		res.render('admin/clubs/edit', { club, countries });
 	} catch (error) {
 		console.log(error);
 
