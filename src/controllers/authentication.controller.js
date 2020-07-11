@@ -12,8 +12,8 @@ authenticationController.renderSignup = (req, res) => {
 authenticationController.signup = passport.authenticate('local-signup', {
 	successRedirect: '/login',
 	failureRedirect: '/signup',
-	failureFlash: { type: 'messageError', message: 'Mal' },
-	successFlash: { type: 'successMessage', message: 'Ok' },
+	failureFlash: true,
+	successFlash: { type: 'successMessage', message: 'Ok' }, // pisa el flash de la funcion
 });
 
 authenticationController.renderLogin = (req, res) => {
@@ -24,40 +24,58 @@ authenticationController.login = (req, res) => {};
 
 authenticationController.logout = (req, res) => {};
 
-passport.use(
-	'local-signup',
-	new LocalStrategy(
-		{
-			usernameField: 'email',
-			passwordField: 'password',
-			passReqToCallback: true,
-		},
-		async (req, email, password, done) => {
-			let user = await User.find({ email });
-			// si ya existe el usurio...
-			if (user) {
+try {
+	passport.use(
+		'local-signup',
+		new LocalStrategy(
+			{
+				usernameField: 'email',
+				passwordField: 'password',
+				passReqToCallback: true,
+			},
+			async (req, email, password, done) => {
+				let user = await User.findOne({ email: email });
+				// si ya existe el usurio...
+				if (user) {
+					return done(
+						null,
+						false,
+						req.flash(
+							'authError',
+							'El email ya se encuentra registrado'
+						)
+					);
+				}
+
+				// registrar nuevo usuario
+				const newUser = new User({
+					email,
+					user: req.body.user,
+					password: await bcrypt.hash(password, 10),
+				});
+
+				await newUser.save();
+
 				return done(
 					null,
-					false,
-					req.flash(
-						'messageError',
-						'El email ya se encuentra registrado'
-					)
+					newUser,
+					req.flash('authSuccess', 'Registrado correctamente')
 				);
 			}
+		)
+	);
+} catch (error) {
+	console.log(error);
+}
 
-			// registrar nuevo usuario
-			const newUser = new User({
-				email,
-				user: req.body.user,
-				password: await bcrypt.hash(password),
-			});
+passport.serializeUser((user, done) => {
+	done(null, user._id);
+});
 
-			await newUser.save();
-
-			return done(null, newUser);
-		}
-	)
-);
+passport.deserializeUser((id, done) => {
+	User.findById(id, (err, user) => {
+		done(err, user);
+	});
+});
 
 module.exports = authenticationController;

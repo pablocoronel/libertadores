@@ -1,3 +1,4 @@
+//- Admin
 if messageSuccess
     for message in messageSuccess
         .alert.alert-success(role="alert") 
@@ -7,3 +8,10 @@ if messageError
     for message in messageError
         .alert.alert-danger(role="alert")
             | #{message.msg}
+
+//- Registro y login
+if authError && authError != ""
+    .alert.alert-danger(role="alert") #{authError}
+
+if authSuccess && authSuccess != ""
+    .alert.alert-success(role="alert") #{authSuccess}

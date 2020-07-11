@@ -33,9 +33,15 @@ app.use(passport.session());
 // Global variables
 app.use((req, res, next) => {
 	// Aca se setea en RES de forma global a las variables guardadas en REQ flash
+
+	// para el admin
 	res.locals.messageSuccess = req.flash('messageSuccess');
 	res.locals.messageError = req.flash('messageError');
 	res.locals.messageErrorFormModel = req.flash('messageErrorFormModel');
+
+	// para el login y registro
+	res.locals.authError = req.flash('authError');
+	res.locals.authSuccess = req.flash('authSuccess');
 
 	next();
 });
