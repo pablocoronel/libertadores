@@ -4,7 +4,7 @@ block content
     .container
         include ./partials/messages
 
-        form(method="POST" action="/signup/save")
+        form(method="POST" action="/signup/save" novalidate)
             .form-group.row
                 label.col-12.col-sm-2(for='email') Email
                 .col-12.col-sm-10

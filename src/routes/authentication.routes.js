@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router();
+const validations = require('../middlewares/validation');
 
 // Funciones
 const {
@@ -12,7 +13,7 @@ const {
 
 // rutas
 router.get('/signup', renderSignup);
-router.post('/signup/save', signup);
+router.post('/signup/save', validations.signup, signup);
 router.get('/login', renderLogin);
 router.post('/login/save', login);
 router.post('/logout', logout);

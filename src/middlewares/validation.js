@@ -3,6 +3,7 @@ const { check, validationResult } = require('express-validator');
 //? Validaciones con express-validator (no mongoose Schema)
 const validation = {};
 
+// ? Admin
 // Club
 validation.storeClub = [
 	check('name').isLength({ min: 1 }).withMessage('Nombre: Campo obligatorio'),
@@ -312,6 +313,52 @@ validation.updateEdition = [
 		.bail()
 		.isInt()
 		.withMessage('Goles debe ser un número'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
+
+// ? Registro y login
+// registro
+validation.signup = [
+	check('email')
+		.isLength({ min: 1 })
+		.withMessage('Email es un campo obligatorio')
+		.bail()
+		.isEmail()
+		.withMessage('Email no tiene un formato válido'),
+	check('user')
+		.isLength({ min: 1 })
+		.withMessage('Usuario es un campo obligatorio')
+		.bail()
+		.isAlphanumeric('es-ES')
+		.withMessage('Usuario debe ser solo letras y números'),
+	check('password')
+		.isLength({ min: 1 })
+		.withMessage('Contraseña es un campo obligatorio')
+		.bail()
+		.isAscii()
+		.withMessage(
+			'Contraseña debe ser letras, números y/o carateres válidos'
+		),
+	check('confirmPassword')
+		.isLength({ min: 1 })
+		.withMessage('Confirmar Contraseña es un campo obligatorio')
+		.bail()
+		.custom((value, { req }) => {
+			if (value != req.body.password) {
+				throw new Error('Las contraseñas deben ser iguales');
+			}
+
+			return true;
+		}),
 	(req, res, next) => {
 		const errors = validationResult(req);
 
