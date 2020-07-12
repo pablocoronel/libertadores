@@ -371,4 +371,26 @@ validation.signup = [
 	},
 ];
 
+validation.login = [
+	check('email')
+		.isLength({ min: 1 })
+		.withMessage('Email es un campo obligatorio')
+		.bail()
+		.isEmail()
+		.withMessage('Email no tiene un formato válido'),
+	check('password')
+		.isLength({ min: 1 })
+		.withMessage('Contraseña es un campo obligatorio'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
+
 module.exports = validation;

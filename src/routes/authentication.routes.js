@@ -15,7 +15,7 @@ const {
 router.get('/signup', renderSignup);
 router.post('/signup/save', validations.signup, signup);
 router.get('/login', renderLogin);
-router.post('/login/save', login);
+router.post('/login/save', validations.login, login);
 router.post('/logout', logout);
 
 module.exports = router;
