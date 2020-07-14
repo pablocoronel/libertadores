@@ -65,7 +65,7 @@ try {
 				if (passwordValid) {
 					return done(
 						null,
-						user,
+						user, // se guarda el model del usuario en req.user
 						req.flash('authSuccess', 'Logueado correctamente')
 					);
 				}
