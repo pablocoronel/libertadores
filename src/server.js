@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 	// sesion de usuario
 	res.locals.isLogin = req.isAuthenticated();
-	res.locals.user = req.user;
+	res.locals.user = req.user || null;
 
 	next();
 });
