@@ -25,6 +25,9 @@ authenticationController.login = passport.authenticate('local-login', {
 	failureFlash: true,
 });
 
-authenticationController.logout = (req, res) => {};
+authenticationController.logout = (req, res) => {
+	req.logout(); // borra la sesion (passport)
+	res.redirect('/');
+};
 
 module.exports = authenticationController;

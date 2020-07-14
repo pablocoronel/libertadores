@@ -27,7 +27,8 @@ nav img {
 	height: 40px;
 }
 
-#navbarNav a {
+#navbarNav a,
+#navbarNav input[type='submit'] {
 	color: rgb(228, 177, 10);
 	font-family: Lorenza;
 	font-size: 20px;

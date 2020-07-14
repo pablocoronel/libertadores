@@ -16,10 +16,11 @@ nav.navbar.navbar-expand-lg.navbar-dark
             if isLogin
                 li.nav-item.dropdown
                     a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                        | #{user.email}
+                        | #{user.user}
                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
                         a.dropdown-item(href='/admin') Admin
-                        a.dropdown-item(href='/logout') Salir
+                        form(action="/logout" method="post")
+                            input.dropdown-item(type='submit' value="Salir")
             else
                 li.nav-item
                     a.nav-link(href='/login') Ingresar
