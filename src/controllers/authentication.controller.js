@@ -8,16 +8,22 @@ authenticationController.renderSignup = (req, res) => {
 
 authenticationController.signup = passport.authenticate('local-signup', {
 	successRedirect: '/login',
+	successFlash: true,
 	failureRedirect: '/signup',
-	failureFlash: true,
-	successFlash: { type: 'successMessage', message: 'Ok' }, // pisa el flash de la funcion
+	failureFlash: true, // permite el flash en la funcion con la estrategia
+	// successFlash: { type: 'authSuccess', message: 'Ok' }, // tambien se puede flashear aca el mensaje
 });
 
 authenticationController.renderLogin = (req, res) => {
 	res.render('login');
 };
 
-authenticationController.login = (req, res) => {};
+authenticationController.login = passport.authenticate('local-login', {
+	successRedirect: '/',
+	successFlash: true,
+	failureRedirect: '/login',
+	failureFlash: true,
+});
 
 authenticationController.logout = (req, res) => {};
 

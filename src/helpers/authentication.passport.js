@@ -10,9 +10,9 @@ try {
 		'local-signup',
 		new LocalStrategy(
 			{
-				usernameField: 'email',
-				passwordField: 'password',
-				passReqToCallback: true,
+				usernameField: 'email', // nombre del campo recibido
+				passwordField: 'password', // nombre del campo recibido
+				passReqToCallback: true, // permite pasar el request al callback
 			},
 			async (req, email, password, done) => {
 				let user = await User.findOne({ email: email });
@@ -47,6 +47,37 @@ try {
 	);
 
 	// * Login
+	passport.use(
+		'local-login',
+		new LocalStrategy(
+			{
+				passReqToCallback: true, // permite pasar el request al callback
+				usernameField: 'email', // nombre del campo recibido
+				passwordField: 'password', // nombre del campo recibido
+			},
+			async (req, email, password, done) => {
+				// revisar si existe la combinacion user con pass
+				let user = await User.findOne({ email: email });
+
+				let passwordValid =
+					user && bcrypt.compareSync(password, user.password);
+
+				if (passwordValid) {
+					return done(
+						null,
+						user,
+						req.flash('authSuccess', 'Logueado correctamente')
+					);
+				}
+
+				return done(
+					null,
+					false,
+					req.flash('authError', 'Usuario o contraseña incorrecta')
+				);
+			}
+		)
+	);
 } catch (error) {
 	console.log(error);
 }
