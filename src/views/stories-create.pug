@@ -1,0 +1,25 @@
+#create-stories.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    .modal-dialog.modal-lg(role='document')
+        .modal-content
+            .modal-header
+                h5#exampleModalLabel.modal-title Crear historia
+                button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') ×
+
+            .modal-body
+                form(action="/stories" method="post")
+                    form
+                        .form-group.row
+                            label.col-sm-2.col-form-label(for='title') Título
+                            .col-sm-10
+                                input#inputEmail3.form-control(type='text' placeholder='Título')
+                        .form-group.row
+                            label.col-sm-2.col-form-label(for='inputPassword3') Contenido
+                            .col-sm-10
+                                #editor content
+                        .form-group.row
+                            .col-sm-10
+                                button.btn.btn-primary(type='submit') Guardar
+
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-dismiss='modal') Cerrar
