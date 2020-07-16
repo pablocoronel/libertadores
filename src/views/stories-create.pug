@@ -12,11 +12,15 @@
                         .form-group.row
                             label.col-sm-2.col-form-label(for='title') Título
                             .col-sm-10
-                                input#inputEmail3.form-control(type='text' placeholder='Título')
+                                input#inputEmail3.form-control(type='text' name="title" placeholder='Título')
                         .form-group.row
                             label.col-sm-2.col-form-label(for='inputPassword3') Contenido
                             .col-sm-10
-                                #editor content
+                                //- #editor
+                                .body
+                                    textarea(name='content')
+                                    script.
+                                        CKEDITOR.replace( 'content', {extraPlugins: ['colorbutton', 'easyimage', 'font', 'justify', 'preview']} );
                         .form-group.row
                             .col-sm-10
                                 button.btn.btn-primary(type='submit') Guardar
