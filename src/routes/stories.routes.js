@@ -12,6 +12,7 @@ const permissions = require('../middlewares/permissions');
 const {
 	renderStories,
 	storeStories,
+	showStory,
 } = require('../controllers/stories.controller');
 
 // Rutas
@@ -21,5 +22,6 @@ router.post(
 	[permissions.islogged, upload.fields([{ name: 'cover' }])],
 	storeStories
 );
+router.get('/stories/:id', showStory);
 
 module.exports = router;

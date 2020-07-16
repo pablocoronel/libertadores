@@ -9,4 +9,16 @@ block content
         include partials/messages
         button.btn.btn-primary(type='button' data-toggle='modal' data-target='#create-stories') Crear historia
 
+    .container
+        each story in stories
+            .row
+                .col-6
+                    a(href="/stories/"+story._id)
+                        img.img-fluid(src=story.cover, alt="")
+                .col-6
+                    a(href="/stories/"+story._id)
+                        h1 #{story.title}
+
+
+    //- formulario
     include stories-create
