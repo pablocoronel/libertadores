@@ -110,3 +110,5 @@ src/public/images/squads/*
 !src/public/images/squads/.gitkeep
 src/public/images/covers/*
 !src/public/images/covers/.gitkeep
+src/public/images/stories/*
+!src/public/images/stories/.gitkeep

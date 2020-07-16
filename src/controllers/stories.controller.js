@@ -1,4 +1,5 @@
 const Story = require('../models/Story');
+const { uploadImage } = require('../helpers/uploadImage');
 const storiesController = {};
 
 // Funciones
@@ -11,7 +12,12 @@ storiesController.storeStories = async (req, res) => {
 		const { title, content } = req.body;
 		const author = req.user._id;
 
-		const story = new Story({ title, content, author });
+		// Subir imagen de portada
+		const randomCode = Math.random().toString(36).substr(2, 5);
+		const { cover } = uploadImage(req, randomCode, '/images/stories');
+
+		// crear
+		const story = new Story({ title, content, cover, author });
 
 		await story.save();
 

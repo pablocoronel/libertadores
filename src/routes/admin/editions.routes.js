@@ -2,6 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const path = require('path');
 const multer = require('multer');
+// Configuracion de carpeta temporal
 const upload = multer({
 	dest: path.join(__dirname, '../../public/images/covers'),
 });

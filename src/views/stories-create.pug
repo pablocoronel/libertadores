@@ -7,12 +7,16 @@
                     span(aria-hidden='true') ×
 
             .modal-body
-                form(action="/stories" method="post")
+                form(action="/stories" method="post" enctype="multipart/form-data")
                     form
                         .form-group.row
                             label.col-sm-2.col-form-label(for='title') Título
                             .col-sm-10
-                                input#inputEmail3.form-control(type='text' name="title" placeholder='Título')
+                                input.form-control(type='text' name="title" placeholder='Título')
+                        .form-group.row
+                            label.col-sm-2.col-form-label(for='title') Portada
+                            .col-sm-10
+                                input.form-control(type='file' name="cover")
                         .form-group.row
                             label.col-sm-2.col-form-label(for='inputPassword3') Contenido
                             .col-sm-10
