@@ -5,6 +5,7 @@ block customHeadScripts
 
 block content
     //- Modal con editor de texto
-    button.btn.btn-primary(type='button' data-toggle='modal' data-target='#create-stories') Crear historia
+    if userIsLogin
+        button.btn.btn-primary(type='button' data-toggle='modal' data-target='#create-stories') Crear historia
 
     include stories-create
