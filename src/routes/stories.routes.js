@@ -12,8 +12,9 @@ const validations = require('../middlewares/validation');
 // Funciones
 const {
 	renderStories,
-	storeStories,
+	storeStory,
 	showStory,
+	destroyStory,
 } = require('../controllers/stories.controller');
 
 // Rutas
@@ -21,8 +22,13 @@ router.get('/stories', renderStories);
 router.post(
 	'/stories',
 	[permissions.islogged, upload.single('cover'), validations.storeStory],
-	storeStories
+	storeStory
 );
 router.get('/stories/:id', showStory);
+router.delete(
+	'/stories/:id',
+	[permissions.islogged, permissions.isCreatorOfStory],
+	destroyStory
+);
 
 module.exports = router;

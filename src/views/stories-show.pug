@@ -2,6 +2,10 @@ extends layouts/main
 
 block content
     .container
+        if userIsLogin
+            .row
+                form(action="/stories/"+story._id+"?_method=DELETE" method="post")
+                    input(type="submit" value="Eliminar")
         .row
             .col-12.d-flex.justify-content-center
                 h1 #{story.title}

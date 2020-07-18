@@ -6,7 +6,7 @@ const StorySchema = new Schema(
 		content: { type: String, required: true },
 		cover: { type: String, required: true },
 		// Relacion
-		author: { type: Schema.Types.ObjectId, required: true, ref: 'user' },
+		author: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
 	},
 	{ timestamps: true }
 );

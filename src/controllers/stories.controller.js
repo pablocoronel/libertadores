@@ -9,7 +9,7 @@ storiesController.renderStories = async (req, res) => {
 	res.render('stories', { stories });
 };
 
-storiesController.storeStories = async (req, res) => {
+storiesController.storeStory = async (req, res) => {
 	try {
 		const { title, content } = req.body;
 		const author = req.user._id;
@@ -50,4 +50,16 @@ storiesController.showStory = async (req, res) => {
 		}
 	}
 };
+
+storiesController.destroyStory = async (req, res) => {
+	try {
+		await Story.findByIdAndDelete(req.params.id);
+
+		req.flash('messageSuccess', 'Historia eliminada');
+		res.redirect('/stories');
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 module.exports = storiesController;
