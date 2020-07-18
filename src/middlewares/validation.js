@@ -393,4 +393,35 @@ validation.login = [
 	},
 ];
 
+// ? Creacion y edicion de historias
+validation.storeStory = [
+	check('title')
+		.isLength({ min: 1 })
+		.withMessage('Título es un campo obligatorio'),
+	check('cover').custom((value, { req }) => {
+		const mimeOk = ['image/jpeg', 'image/png'];
+
+		if (req.file === undefined) {
+			throw new Error('Portada es un campo obligatorio');
+		} else if (!mimeOk.includes(req.file.mimetype)) {
+			throw new Error('Portada no es un archivo válido');
+		} else {
+			return true;
+		}
+	}),
+	check('content')
+		.isLength({ min: 1 })
+		.withMessage('Contenido es un campo obligatorio'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
+
 module.exports = validation;

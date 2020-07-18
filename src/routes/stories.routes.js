@@ -8,6 +8,7 @@ const upload = multer({
 });
 
 const permissions = require('../middlewares/permissions');
+const validations = require('../middlewares/validation');
 // Funciones
 const {
 	renderStories,
@@ -19,7 +20,7 @@ const {
 router.get('/stories', renderStories);
 router.post(
 	'/stories',
-	[permissions.islogged, upload.fields([{ name: 'cover' }])],
+	[permissions.islogged, upload.single('cover'), validations.storeStory],
 	storeStories
 );
 router.get('/stories/:id', showStory);
