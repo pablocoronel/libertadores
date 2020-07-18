@@ -37,8 +37,13 @@ storiesController.storeStory = async (req, res) => {
 storiesController.showStory = async (req, res) => {
 	try {
 		const story = await Story.findById(req.params.id).orFail();
+		let isCreator = false;
 
-		res.render('stories-show', { story });
+		if (req.isAuthenticated()) {
+			isCreator = story.author.equals(req.user._id);
+		}
+
+		res.render('stories-show', { story, isCreator });
 	} catch (error) {
 		console.log(error);
 
