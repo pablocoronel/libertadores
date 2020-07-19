@@ -1,13 +1,19 @@
-const storyValidation = () => {
-	const title = document.getElementsByName('title')[0];
-	const cover = document.getElementsByName('cover')[0];
-	const content = document.getElementsByName('content')[0];
-	const messageError = document.getElementById('errorMessage');
+/**
+ *
+ * @param {String} error - id del div que muestra los mensajes de error
+ * @param  {String[]} fields - atributo name de los inputs a validar
+ * @returns boolean
+ */
+const storyValidation = (error, ...fields) => {
 	const result = false;
+	const inputs = [];
+	const messageError = document.getElementById(error);
 
-	const fieldsNotAreEmpty = [title, cover, content].every(
-		(item) => item.value != ''
-	);
+	fields.forEach((item) => {
+		inputs.push(document.getElementsByName(item)[0]);
+	});
+
+	const fieldsNotAreEmpty = inputs.every((item) => item.value != '');
 
 	if (fieldsNotAreEmpty) {
 		result = true;
