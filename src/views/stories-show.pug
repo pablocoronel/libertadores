@@ -1,11 +1,17 @@
 extends layouts/main
 
+block customHeadScripts
+    script(src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js")
+
 block content
     .container
         if userIsLogin && isCreator
             .row
-                form(action="/stories/"+story._id+"?_method=DELETE" method="post")
+                form(action="/stories/"+story._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+story.title+"')")
                     input(type="submit" value="Eliminar")
+
+            .row
+                button.btn.btn-primary(type='button' data-toggle='modal' data-target='#edit-stories') Editar historia
         .row
             .col-12.d-flex.justify-content-center
                 h1 #{story.title}
@@ -13,3 +19,10 @@ block content
         .row
             .col-12
                 .container!= story.content
+
+    //- modal con formulario
+    include stories-edit
+
+block customBodyScripts
+    script(src="/js/frontValidation.js")
+    script(src="/js/confirm.js")
