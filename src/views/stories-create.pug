@@ -7,7 +7,10 @@
                     span(aria-hidden='true') ×
 
             .modal-body
-                form(action="/stories" method="post" enctype="multipart/form-data")
+                //- mensajes de error front
+                .alert.alert-danger.d-none#errorMessage(role="alert") Todos los campos son obligatorios
+
+                form(action="/stories" method="post" enctype="multipart/form-data" onsubmit="return storyValidation()")
                     form
                         .form-group.row
                             label.col-sm-2.col-form-label(for='title') Título
