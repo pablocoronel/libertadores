@@ -1,12 +1,13 @@
 extends layouts/main
 
 block customHeadScripts
-    link(rel="stylesheet", href="/css/stories.css")
+    link(rel="stylesheet" href="/css/stories.css")
     script(src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js")
 
 block content
     .container
         if userIsLogin && isCreator
+            include partials/messages
             .row
                 form(action="/stories/"+story._id+"?_method=DELETE" method="post" onsubmit="return confirmDelete('"+story.title+"')")
                     input(type="submit" value="Eliminar")

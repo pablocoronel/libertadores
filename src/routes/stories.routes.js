@@ -32,6 +32,7 @@ router.put(
 		permissions.islogged,
 		permissions.isCreatorOfStory,
 		upload.single('cover'),
+		validations.updateStory,
 	],
 	updateStory
 );

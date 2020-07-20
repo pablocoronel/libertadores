@@ -424,4 +424,35 @@ validation.storeStory = [
 	},
 ];
 
+validation.updateStory = [
+	check('title')
+		.isLength({ min: 1 })
+		.withMessage('Título es un campo obligatorio'),
+	check('cover').custom((value, { req }) => {
+		const mimeOk = ['image/jpeg', 'image/png'];
+
+		// No es un campo obligatorio, validar el tipo de archivo
+		if (req.file != undefined) {
+			if (!mimeOk.includes(req.file.mimetype)) {
+				throw new Error('Portada no es un archivo válido');
+			}
+		}
+
+		return true;
+	}),
+	check('content')
+		.isLength({ min: 1 })
+		.withMessage('Contenido es un campo obligatorio'),
+	(req, res, next) => {
+		const errors = validationResult(req);
+
+		if (!errors.isEmpty()) {
+			req.flash('messageError', errors.array());
+			res.redirect('back');
+		} else {
+			next();
+		}
+	},
+];
+
 module.exports = validation;
