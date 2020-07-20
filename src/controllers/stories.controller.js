@@ -56,6 +56,32 @@ storiesController.showStory = async (req, res) => {
 	}
 };
 
+storiesController.updateStory = async (req, res) => {
+	try {
+		const { title, content } = req.body;
+
+		// cover image
+		const oldCover = await Story.findById(req.params.id, 'cover');
+		const randomCode = Math.random().toString(36).substr(2, 5);
+
+		const newCover = uploadImage(
+			req,
+			'cover-' + randomCode,
+			'/images/stories'
+		);
+
+		let cover = newCover || oldCover.cover;
+
+		// actualizar en bd
+		await Story.findByIdAndUpdate(req.params.id, { title, content, cover });
+
+		req.flash('messageSuccess', 'Historia editada');
+		res.redirect('back');
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 storiesController.destroyStory = async (req, res) => {
 	try {
 		await Story.findByIdAndDelete(req.params.id);

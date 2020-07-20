@@ -14,6 +14,7 @@ const {
 	renderStories,
 	storeStory,
 	showStory,
+	updateStory,
 	destroyStory,
 } = require('../controllers/stories.controller');
 
@@ -25,6 +26,7 @@ router.post(
 	storeStory
 );
 router.get('/stories/:id', showStory);
+router.put('/stories/:id', upload.single('cover'), updateStory);
 router.delete(
 	'/stories/:id',
 	[permissions.islogged, permissions.isCreatorOfStory],
