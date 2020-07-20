@@ -26,7 +26,15 @@ router.post(
 	storeStory
 );
 router.get('/stories/:id', showStory);
-router.put('/stories/:id', upload.single('cover'), updateStory);
+router.put(
+	'/stories/:id',
+	[
+		permissions.islogged,
+		permissions.isCreatorOfStory,
+		upload.single('cover'),
+	],
+	updateStory
+);
 router.delete(
 	'/stories/:id',
 	[permissions.islogged, permissions.isCreatorOfStory],
