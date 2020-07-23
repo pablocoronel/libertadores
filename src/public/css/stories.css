@@ -1,3 +1,8 @@
+/** general */
+.alert {
+	text-align: center;
+}
+
 /* ?Listado */
 #createButton {
 	background-color: rgb(12, 105, 35);
@@ -38,6 +43,7 @@ button[type='submit']:active {
 	font-family: Lorenza;
 	background-color: rgb(12, 105, 35) !important;
 	color: rgb(255, 255, 255);
+	border: 0px;
 }
 
 #create-stories img,
@@ -49,4 +55,53 @@ button[type='submit']:active {
 #edit-stories label {
 	font-family: Liberation;
 	font-size: 20px;
+}
+
+/* ? Ver */
+#contentStory {
+	min-height: 40vh;
+}
+
+#buttons {
+	width: 101.1%;
+}
+
+.columnLeftButton {
+	padding-left: 15px;
+	padding-right: 0px;
+}
+
+.columnRightButton {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#editButton {
+	background-color: rgb(12, 105, 35);
+	border-color: rgb(12, 105, 35);
+	border-radius: 0%;
+	font-family: Lorenza;
+	font-size: 20px;
+	width: 100%;
+}
+
+#deleteButton {
+	background-color: rgb(160, 18, 18);
+	border-color: rgb(160, 18, 18);
+	border-radius: 0%;
+	font-family: Lorenza;
+	font-size: 20px;
+	width: 100%;
+}
+
+#contentStory h1 {
+	font-family: Liberation;
+	text-transform: capitalize;
+	font-size: 4vw;
+}
+
+@media (max-width: 768px) {
+	#buttons {
+		width: 104%;
+	}
 }
