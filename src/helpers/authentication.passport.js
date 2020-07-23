@@ -33,6 +33,7 @@ try {
 					email,
 					user: req.body.user,
 					password: await bcrypt.hash(password, 10),
+					role: 'user',
 				});
 
 				await newUser.save();
