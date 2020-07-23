@@ -2,20 +2,22 @@ extends layouts/main.pug
 
 block customHeadScripts
     script(src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js")
+    link(rel="stylesheet" href="/css/stories.css")
 
 block content
     //- Modal con editor de texto
     if userIsLogin
         include partials/messages
-        button.btn.btn-primary(type='button' data-toggle='modal' data-target='#create-stories') Crear historia
+        button#createButton.btn.btn-primary(type='button' data-toggle='modal' data-target='#create-stories') Crear historia
 
-    .container
+    #storyList.container
         each story in stories
             .row
                 .col-6
                     a(href="/stories/"+story._id)
-                        img.img-fluid(src=story.cover, alt="")
-                .col-6
+                        #cover
+                            img.img-fluid(src=story.cover, alt="")
+                .col-6#title
                     a(href="/stories/"+story._id)
                         h1 #{story.title}
 

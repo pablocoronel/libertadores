@@ -1,4 +1,52 @@
-/* ? Form de edicion */
-#edit-stories img{
-    max-height: 20vh;
+/* ?Listado */
+#createButton {
+	background-color: rgb(12, 105, 35);
+	border-color: rgb(12, 105, 35);
+	border-radius: 0%;
+	font-family: Lorenza;
+	font-size: 20px;
+}
+
+#storyList {
+	margin-top: 5vh;
+}
+
+#storyList #cover {
+	border: 3px solid rgb(228, 177, 10);
+	margin-bottom: 3vh;
+}
+
+#storyList #cover img {
+	height: 40vh;
+	width: 100%;
+	object-fit: cover;
+}
+
+#storyList #title a {
+	text-decoration: none;
+	color: rgb(56, 58, 52);
+	font-family: Liberation;
+	text-transform: capitalize;
+}
+
+/* ? Modal Crear y Editar */
+#create-stories .modal-header,
+#edit-stories .modal-header,
+button[type='submit'],
+button[type='submit']:hover,
+button[type='submit']:active {
+	font-family: Lorenza;
+	background-color: rgb(12, 105, 35) !important;
+	color: rgb(255, 255, 255);
+}
+
+#create-stories img,
+#edit-stories img {
+	max-height: 20vh;
+}
+
+#create-stories label,
+#edit-stories label {
+	font-family: Liberation;
+	font-size: 20px;
 }
