@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const expressSession = require('express-session');
 const connectFlash = require('connect-flash');
 const passport = require('passport');
+const roles = require('./helpers/authorization');
 
 // Initials
 const app = express();
@@ -29,6 +30,7 @@ app.use(
 app.use(connectFlash()); // (necesita express-session) Agrega al request un metodo flash => req.flash()
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(roles.middleware()); // roles
 
 // Global variables
 app.use((req, res, next) => {
