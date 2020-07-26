@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 	res.locals.formValues = req.flash('formValues');
 
 	// sesion de usuario
-	res.locals.userIsLogin = req.isAuthenticated();
+	res.locals.userIsLogged = req.isAuthenticated();
 	res.locals.user = req.user || null;
 
 	next();

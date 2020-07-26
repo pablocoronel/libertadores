@@ -5,7 +5,7 @@ block customHeadScripts
     script(src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js")
 
 block content
-    if userIsLogin && isCreator
+    if userIsLogged && isCreator
         include partials/messages
         #buttons.row
             .col-12.col-md-6.columnLeftButton
