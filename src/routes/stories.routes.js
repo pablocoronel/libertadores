@@ -7,7 +7,7 @@ const upload = multer({
 	dest: path.join(__dirname, '../public/images/stories'),
 });
 
-const permissions = require('../middlewares/permissions');
+const { permissions } = require('../middlewares/permissions');
 const validations = require('../middlewares/validation');
 // Funciones
 const {

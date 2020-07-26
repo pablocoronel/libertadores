@@ -6,7 +6,7 @@ const multer = require('multer'); // sirve para subir archivos desde form
 const upload = multer({
 	dest: path.join(__dirname, '../../public/images/clubs'),
 });
-const permissions = require('../../middlewares/permissions');
+const { permissions } = require('../../middlewares/permissions');
 
 // Validaciones
 const validation = require('../../middlewares/validation');

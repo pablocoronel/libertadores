@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const expressSession = require('express-session');
 const connectFlash = require('connect-flash');
 const passport = require('passport');
-const roles = require('./helpers/authorization');
+const { roles } = require('./middlewares/permissions');
 
 // Initials
 const app = express();

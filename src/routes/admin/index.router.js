@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const permissions = require('../../middlewares/permissions');
-const roles = require('../../helpers/authorization');
+const { roles, permissions } = require('../../middlewares/permissions');
 
 // Funciones
 const { renderIndex } = require('../../controllers/admin/index.controller');
@@ -9,8 +8,7 @@ const { renderIndex } = require('../../controllers/admin/index.controller');
 // Rutas
 router.get(
 	'/admin',
-	[roles.can('access admin page')],
-	permissions.islogged,
+	[permissions.islogged, roles.can('access admin page')],
 	renderIndex
 );
 

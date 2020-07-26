@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const permissions = require('../../middlewares/permissions');
+const { permissions } = require('../../middlewares/permissions');
 
 // Validaciones
 const validation = require('../../middlewares/validation');
