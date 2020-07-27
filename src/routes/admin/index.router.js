@@ -1,15 +1,11 @@
 const { Router } = require('express');
 const router = Router();
-const { roles, permissions } = require('../../middlewares/permissions');
+const user = require('../../middlewares/permissions').roles;
 
 // Funciones
 const { renderIndex } = require('../../controllers/admin/index.controller');
 
 // Rutas
-router.get(
-	'/admin',
-	[permissions.islogged, roles.can('access admin page')],
-	renderIndex
-);
+router.get('/admin', user.is('admin'), renderIndex);
 
 module.exports = router;

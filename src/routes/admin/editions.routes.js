@@ -6,7 +6,7 @@ const multer = require('multer');
 const upload = multer({
 	dest: path.join(__dirname, '../../public/images/covers'),
 });
-const { permissions } = require('../../middlewares/permissions');
+const user = require('../../middlewares/permissions').roles;
 
 // Validaciones
 const validation = require('../../middlewares/validation');
@@ -22,27 +22,27 @@ const {
 } = require('../../controllers/admin/editions.controller');
 
 // Rutas
-router.get('/admin/editions', permissions.islogged, listEditions);
-router.get('/admin/editions/create', permissions.islogged, createEditions);
+router.get('/admin/editions', user.is('admin'), listEditions);
+router.get('/admin/editions/create', user.is('admin'), createEditions);
 router.post(
 	'/admin/editions',
 	[
+		user.is('admin'),
 		upload.fields([{ name: 'cover' }, { name: 'squad' }]),
 		validation.storeEdition,
-		permissions.islogged,
 	],
 	storeEditions
 );
-router.get('/admin/editions/:id/edit', permissions.islogged, editEditions);
+router.get('/admin/editions/:id/edit', user.is('admin'), editEditions);
 router.put(
 	'/admin/editions/:id',
 	[
+		user.is('admin'),
 		upload.fields([{ name: 'cover' }, { name: 'squad' }]),
 		validation.updateEdition,
-		permissions.islogged,
 	],
 	updateEditions
 );
-router.delete('/admin/editions/:id', permissions.islogged, destroyEditions);
+router.delete('/admin/editions/:id', user.is('admin'), destroyEditions);
 
 module.exports = router;

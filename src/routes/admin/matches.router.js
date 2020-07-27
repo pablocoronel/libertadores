@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { permissions } = require('../../middlewares/permissions');
+const user = require('../../middlewares/permissions').roles;
 
 // Validaciones
 const validation = require('../../middlewares/validation');
@@ -9,30 +9,22 @@ const validation = require('../../middlewares/validation');
 const controller = require('../../controllers/admin/matches.controller');
 
 // Rutas
-router.get('/admin/matches', permissions.islogged, controller.listMatches);
-router.get(
-	'/admin/matches/create',
-	permissions.islogged,
-	controller.createMatches
-);
+router.get('/admin/matches', user.is('admin'), controller.listMatches);
+router.get('/admin/matches/create', user.is('admin'), controller.createMatches);
 router.post(
 	'/admin/matches',
-	[validation.storeMatch, permissions.islogged],
+	[user.is('admin'), validation.storeMatch],
 	controller.storeMatches
 );
-router.get(
-	'/admin/matches/:id/edit',
-	permissions.islogged,
-	controller.editMatches
-);
+router.get('/admin/matches/:id/edit', user.is('admin'), controller.editMatches);
 router.put(
 	'/admin/matches/:id',
-	[validation.updateMatch, permissions.islogged],
+	[user.is('admin'), validation.updateMatch],
 	controller.updateMatches
 );
 router.delete(
 	'/admin/matches/:id',
-	permissions.islogged,
+	user.is('admin'),
 	controller.destroyMatches
 );
 

@@ -6,7 +6,7 @@ const multer = require('multer'); // sirve para subir archivos desde form
 const upload = multer({
 	dest: path.join(__dirname, '../../public/images/clubs'),
 });
-const { permissions } = require('../../middlewares/permissions');
+const user = require('../../middlewares/permissions').roles;
 
 // Validaciones
 const validation = require('../../middlewares/validation');
@@ -22,18 +22,18 @@ const {
 } = require('../../controllers/admin/clubs.controller');
 
 // Rutas
-router.get('/admin/clubs', permissions.islogged, listClubs);
-router.get('/admin/clubs/create', permissions.islogged, createClubs);
+router.get('/admin/clubs', user.is('admin'), listClubs);
+router.get('/admin/clubs/create', user.is('admin'), createClubs);
 router.post(
 	'/admin/clubs',
-	[upload.single('shield'), validation.storeClub, permissions.islogged],
+	[user.is('admin'), upload.single('shield'), validation.storeClub],
 	storeClubs
 );
-router.get('/admin/clubs/:id/edit', permissions.islogged, editClubs);
+router.get('/admin/clubs/:id/edit', user.is('admin'), editClubs);
 router.put(
 	'/admin/clubs/:id',
-	[upload.single('shield'), validation.updateClub, permissions.islogged],
+	[user.is('admin'), upload.single('shield'), validation.updateClub],
 	updateClubs
 );
-router.delete('/admin/clubs/:id', permissions.islogged, destroyClubs);
+router.delete('/admin/clubs/:id', user.is('admin'), destroyClubs);
 module.exports = router;
