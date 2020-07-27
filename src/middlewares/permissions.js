@@ -38,9 +38,13 @@ roles.use('edit and delete story', async (req) => {
 			.lean()
 			.orFail();
 
-		if (story.author && req.user) {
+		if (story && req.user) {
+			const author = story.author._id;
+			const user = req.user._id;
+			const isAdmin = await req.userIs('admin');
+
 			// Usar equals() de mongoose para comparar ObjectId
-			if (story.author._id.equals(req.user._id)) {
+			if (author.equals(user) || isAdmin) {
 				return true;
 			}
 		}
