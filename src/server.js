@@ -30,7 +30,7 @@ app.use(
 app.use(connectFlash()); // (necesita express-session) Agrega al request un metodo flash => req.flash()
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(roles.middleware()); // roles
+app.use(roles.middleware()); // Permisos y roles de connect-roles
 
 // Global variables
 app.use((req, res, next) => {

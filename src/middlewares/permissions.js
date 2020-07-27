@@ -3,6 +3,7 @@ const Story = require('../models/Story');
 const permissions = {};
 
 const roles = new ConnecRoles({
+	async: true,
 	failureHandler: function (req, res, action) {
 		// optional function to customise code that runs when
 		// user fails authorisation
@@ -16,14 +17,38 @@ const roles = new ConnecRoles({
 	},
 });
 
-// permisos con connect-roles
-roles.use('access admin page', (req) => {
+//? roles
+roles.use('admin', async (req) => {
 	if (req.user && req.user.role === 'admin') {
 		return true;
 	}
 });
 
-// con middleware
+roles.use('logged', async (req) => {
+	if (req.isAuthenticated()) {
+		return true;
+	}
+});
+
+// * permisos
+roles.use('edit and delete story', async (req) => {
+	try {
+		const story = await Story.findById(req.params.id, 'author')
+			.populate('author')
+			.lean()
+			.orFail();
+
+		if (story.author && req.user) {
+			// Usar equals() de mongoose para comparar ObjectId
+			if (story.author._id.equals(req.user._id)) {
+				return true;
+			}
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 permissions.islogged = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();

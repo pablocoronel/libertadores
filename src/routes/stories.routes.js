@@ -6,9 +6,9 @@ const path = require('path');
 const upload = multer({
 	dest: path.join(__dirname, '../public/images/stories'),
 });
-
-const { permissions } = require('../middlewares/permissions');
+const user = require('../middlewares/permissions').roles;
 const validations = require('../middlewares/validation');
+
 // Funciones
 const {
 	renderStories,
@@ -22,15 +22,15 @@ const {
 router.get('/stories', renderStories);
 router.post(
 	'/stories',
-	[permissions.islogged, upload.single('cover'), validations.storeStory],
+	[user.is('logged'), upload.single('cover'), validations.storeStory],
 	storeStory
 );
 router.get('/stories/:id', showStory);
 router.put(
 	'/stories/:id',
 	[
-		permissions.islogged,
-		permissions.isCreatorOfStory,
+		user.is('logged'),
+		user.can('edit and delete story'),
 		upload.single('cover'),
 		validations.updateStory,
 	],
@@ -38,7 +38,7 @@ router.put(
 );
 router.delete(
 	'/stories/:id',
-	[permissions.islogged, permissions.isCreatorOfStory],
+	[user.is('logged'), user.can('edit and delete story')],
 	destroyStory
 );
 
