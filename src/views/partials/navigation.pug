@@ -18,7 +18,8 @@ nav.navbar.navbar-expand-lg.navbar-dark
                     a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
                         | #{user.user}
                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                        a.dropdown-item(href='/admin') Admin
+                        if user.role === 'admin'
+                            a.dropdown-item(href='/admin') Admin
                         form(action="/logout" method="post")
                             input.dropdown-item(type='submit' value="Salir")
             else
