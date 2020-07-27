@@ -40,7 +40,8 @@ storiesController.showStory = async (req, res) => {
 		let isCreator = false;
 
 		if (req.isAuthenticated()) {
-			isCreator = story.author.equals(req.user._id);
+			const isAdmin = await req.userIs('admin');
+			isCreator = story.author.equals(req.user._id) || isAdmin;
 		}
 
 		res.render('stories-show', { story, isCreator });
