@@ -7,12 +7,43 @@ block content
     #indexCarousel.carousel.slide(data-ride='carousel')
         .carousel-inner
             .carousel-item.active.hovereffect
-                img.d-block.w-100(src='images/slider/racing.jpg' alt='First slide')
+                img.d-block.w-100(src='images/slider/independiente.jpg' alt='independiente')
                 .overlay.d-flex.justify-content-center
                     p
                         a.info(href="/stories") Ver historias
 
-            //- .carousel-item
-            //-     img.d-block.w-100(src='...' alt='Second slide')
-            //- .carousel-item
-            //-     img.d-block.w-100(src='...' alt='Third slide')
+            .carousel-item.hovereffect
+                img.d-block.w-100(src='images/slider/palermo.jpg' alt='palermo')
+                .overlay.d-flex.justify-content-center
+                    p
+                        a.info(href="/stories") Ver historias
+
+            .carousel-item.hovereffect
+                img.d-block.w-100(src='images/slider/colocolo.jpg' alt='colocolo')
+                .overlay.d-flex.justify-content-center
+                    p
+                        a.info(href="/stories") Ver historias
+
+            .carousel-item.hovereffect
+                img.d-block.w-100(src='images/slider/peñarol.jpeg' alt='peñarol')
+                .overlay.d-flex.justify-content-center
+                    p
+                        a.info(href="/stories") Ver historias
+
+            .carousel-item.hovereffect
+                img.d-block.w-100(src='images/slider/santos.jpg' alt='santos')
+                .overlay.d-flex.justify-content-center
+                    p
+                        a.info(href="/stories") Ver historias
+
+            .carousel-item.hovereffect
+                img.d-block.w-100(src='images/slider/racing.jpg' alt='racing')
+                .overlay.d-flex.justify-content-center
+                    p
+                        a.info(href="/stories") Ver historias
+
+block customBodyScripts
+    script.
+        $('.carousel').carousel({
+            interval: 3000
+        })
