@@ -1,4 +1,4 @@
-#edit-stories.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+#edit-stories.modal.fade(role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
     .modal-dialog.modal-lg(role='document')
         .modal-content
             .modal-header
@@ -33,7 +33,7 @@
                             .body
                                 textarea(name='content') #{story.content}
                                 script.
-                                    CKEDITOR.replace( 'content', {extraPlugins: ['colorbutton', 'font', 'justify', 'preview']} );
+                                    CKEDITOR.replace( 'content', {extraPlugins: ['colorbutton', 'font', 'image2,uploadimage', 'justify', 'preview']} );
 
                     .form-group.row
                         .col-sm-10
