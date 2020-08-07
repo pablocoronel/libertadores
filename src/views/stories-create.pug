@@ -28,7 +28,8 @@
                             .body
                                 textarea(name='content')
                                 script.
-                                    CKEDITOR.replace( 'content', {extraPlugins: ['colorbutton', 'font', 'image2,uploadimage', 'justify', 'preview']});
+                                    CKEDITOR.plugins.addExternal('videoembed', '/lib/ckeditor-plugins/videoembed/plugin.js');
+                                    CKEDITOR.replace( 'content', {extraPlugins: ['videoembed', 'colorbutton', 'font', 'image2,uploadimage', 'justify', 'preview']});
 
                     .form-group.row
                         .col-sm-10
