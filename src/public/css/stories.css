@@ -96,14 +96,22 @@ button[type='submit']:active {
 
 #contentStory h1 {
 	font-family: Liberation;
-    text-transform: capitalize;
-    color: rgb(56, 58, 52);
-    font-size: 4vw;
-    margin-bottom: 2vh;
+	text-transform: capitalize;
+	color: rgb(56, 58, 52);
+	font-size: 4vw;
+	margin-bottom: 2vh;
 }
 
 @media (max-width: 768px) {
 	#buttons {
 		width: 104%;
+	}
+
+	/* ? ver */
+	iframe {
+		width: max-content;
+	}
+	#contentStory .container img {
+		max-width: 90vw;
 	}
 }
