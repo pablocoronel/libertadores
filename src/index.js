@@ -1,4 +1,4 @@
-require('dotenv').config(); // carga el .env
+require('./config/env.config'); // Carga las variables en .env desde un archivo de configuracion
 
 const app = require('./server'); // importa el server.js
 
