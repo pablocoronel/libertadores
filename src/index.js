@@ -1,7 +1,7 @@
-// require('./config/env.config'); // Carga las variables en .env desde un archivo de configuracion
 if (process.env.NODE_ENV === 'development') {
-	require('dotenv').config(); // carga el .env
+	require('dotenv').config(); // carga el .env solo en modo development
 }
+
 const app = require('./server'); // importa el server.js
 
 require('./database'); // importa la configuracion de la BD
