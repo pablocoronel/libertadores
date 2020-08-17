@@ -4,7 +4,7 @@ const path = require('path');
 const multer = require('multer');
 // Configuracion de carpeta temporal
 const upload = multer({
-	dest: path.join(__dirname, '../../public/images/covers'),
+	dest: path.join(__dirname, '../../public/images/editions/covers'),
 });
 const user = require('../../middlewares/permissions').roles;
 
