@@ -16,11 +16,12 @@ storiesController.storeStory = async (req, res) => {
 
 		// Subir imagen de portada
 		const randomCode = Math.random().toString(36).substr(2, 5);
-		const cover = uploadImage(
-			req,
-			'cover-' + randomCode,
-			'/images/stories'
-		);
+		const cover = uploadImage(req, {
+			cover: {
+				name: 'cover-' + randomCode,
+				folder: '/images/stories',
+			},
+		});
 
 		// crear
 		const story = new Story({ title, content, cover, author });
@@ -65,11 +66,12 @@ storiesController.updateStory = async (req, res) => {
 		const oldCover = await Story.findById(req.params.id, 'cover');
 		const randomCode = Math.random().toString(36).substr(2, 5);
 
-		const newCover = uploadImage(
-			req,
-			'cover-' + randomCode,
-			'/images/stories'
-		);
+		const newCover = uploadImage(req, {
+			cover: {
+				name: 'cover-' + randomCode,
+				folder: '/images/stories',
+			},
+		});
 
 		let cover = newCover || oldCover.cover;
 

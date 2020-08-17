@@ -4,12 +4,11 @@ const fs = require('fs');
 /**
  *
  * @param {Request} req - Request
- * @param {String} baseNameImage - Nombre personalizado para la imagen
- * @param  {String[]} folderImage - Array de carpetas (según orden de declaracion en el metodo fields de Multer)
+ * @param  {Object} dataFile - Object con nombre/s de carpeta/s y archivo/s, {fieldName: {name: String, folder: String}, {...}}
  *
  * @return {Object} - Objeto (o String para single) con rutas relativas a las imagenes subidas (según orden de declarcion en el metodo fields de Multer), las claves del objeto devuelto son la propiedad name del metodo fields de Multer (en middleware pasado en el router)
  */
-const uploadImage = (req, baseNameImage, ...folderImage) => {
+const uploadImage = (req, dataFile) => {
 	if (req.file === undefined && req.files === undefined) {
 		return null;
 	}
@@ -22,31 +21,28 @@ const uploadImage = (req, baseNameImage, ...folderImage) => {
 		const uploadedFilePaths = {};
 		const imagesField = Object.entries(file);
 
-		imagesField.forEach((fileField, indexFileField) => {
-			const indexField = fileField[0];
-
+		imagesField.forEach((fileField) => {
 			fileField[1].forEach((image) => {
 				const tempPath = image.path;
-				const newPath = path.join(
-					folderImage[indexFileField],
-					indexField.concat(
-						'-',
-						baseNameImage,
-						'.',
-						image.originalname.split('.').pop()
-					)
-				);
+				const mimetype = image.mimetype;
+				const fieldname = image.fieldname;
+				const folder = dataFile[image.fieldname].folder;
+				const name = dataFile[image.fieldname].name;
+				const originalname = image.originalname.split('.').pop();
+
+				const fullName = fieldname.concat('-', name, '.', originalname);
+				const newPath = path.join(folder, fullName);
 				const finalPath = path.join(__dirname, '../public', newPath);
 
 				// Subida de imagen
-				if (mimeOk.includes(image.mimetype)) {
+				if (mimeOk.includes(mimetype)) {
 					fs.rename(tempPath, finalPath, (err) => {
 						if (err) {
 							throw err;
 						}
 					});
 
-					uploadedFilePaths[indexField] = newPath;
+					uploadedFilePaths[fieldname] = newPath;
 				} else {
 					throw 'archivo no admitido';
 				}
@@ -57,14 +53,16 @@ const uploadImage = (req, baseNameImage, ...folderImage) => {
 	} else {
 		//* Una sola imagen
 		const tempPath = file.path;
-		const newPath = path.join(
-			folderImage[0],
-			baseNameImage.concat('.', file.originalname.split('.').pop())
-		);
+		const folder = dataFile[file.fieldname].folder;
+		const name = dataFile[file.fieldname].name;
+		const originalname = file.originalname.split('.').pop();
+		const mimetype = file.mimetype;
+
+		const newPath = path.join(folder, name.concat('.', originalname));
 		const finalPath = path.join(__dirname, '../public', newPath);
 
 		// Subida de imagen
-		if (mimeOk.includes(file.mimetype)) {
+		if (mimeOk.includes(mimetype)) {
 			fs.rename(tempPath, finalPath, (err) => {
 				if (err) {
 					throw err;

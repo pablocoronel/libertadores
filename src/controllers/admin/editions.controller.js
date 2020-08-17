@@ -59,12 +59,10 @@ editionsController.storeEditions = async (req, res) => {
 		} = req.body;
 
 		// subida de imagenes
-		const { squad, cover } = uploadImage(
-			req,
-			req.body.year,
-			'/images/covers',
-			'/images/squads'
-		);
+		const { squad, cover } = uploadImage(req, {
+			cover: { name: req.body.year, folder: '/images/covers' },
+			squad: { name: req.body.year, folder: '/images/squads' },
+		});
 
 		const newEdition = new Edition({
 			year,
@@ -141,7 +139,10 @@ editionsController.updateEditions = async (req, res) => {
 		const {
 			cover = defaultImages.cover,
 			squad = defaultImages.squad,
-		} = uploadImage(req, year, '/images/covers', '/images/squads');
+		} = uploadImage(req, {
+			cover: { name: year, folder: '/images/covers' },
+			squad: { name: year, folder: '/images/squads' },
+		});
 
 		// * nuevo document
 		const updatedEdition = {
