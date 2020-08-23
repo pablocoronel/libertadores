@@ -13,5 +13,5 @@ mongoose
 		useNewUrlParser: true,
 		useCreateIndex: true,
 	})
-	.then((db) => console.log('Database connected'))
+	.then((db) => console.log('Connected to database: ' + db.connection.name))
 	.catch((err) => console.log(err));
