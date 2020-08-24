@@ -19,18 +19,8 @@ const MatchSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	homeScorer: [
-		{
-			type: String,
-			required: true,
-		},
-	],
-	awayScorer: [
-		{
-			type: String,
-			required: true,
-		},
-	],
+	homeScorer: [{ type: String }],
+	awayScorer: [{ type: String }],
 
 	// Relaciones, ref es el nombre del modelo relacionado ([{type:..., ref:...}] para varios)
 	homeClub: {
