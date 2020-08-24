@@ -99,9 +99,6 @@ validation.storeMatch = [
 		.bail()
 		.isInt()
 		.withMessage('Marcador local debe ser un número'),
-	check('homeScorer')
-		.isLength({ min: 1 })
-		.withMessage('Goleadores local es un campo obligatorio'),
 	check('awayClub')
 		.isLength({ min: 1 })
 		.withMessage('Club visitante es un campo obligatorio'),
@@ -111,9 +108,6 @@ validation.storeMatch = [
 		.bail()
 		.isInt()
 		.withMessage('Marcador visitante debe ser un número'),
-	check('awayScorer')
-		.isLength({ min: 1 })
-		.withMessage('Goleadores visitante es un campo obligatorio'),
 	(req, res, next) => {
 		const errors = validationResult(req);
 
@@ -155,9 +149,6 @@ validation.updateMatch = [
 		.bail()
 		.isInt()
 		.withMessage('Marcador local debe ser un número'),
-	check('homeScorer')
-		.isLength({ min: 1 })
-		.withMessage('Goleadores local es un campo obligatorio'),
 	check('awayClub')
 		.isLength({ min: 1 })
 		.withMessage('Club visitante es un campo obligatorio'),
@@ -167,9 +158,6 @@ validation.updateMatch = [
 		.bail()
 		.isInt()
 		.withMessage('Marcador visitante debe ser un número'),
-	check('awayScorer')
-		.isLength({ min: 1 })
-		.withMessage('Goleadores visitante es un campo obligatorio'),
 	(req, res, next) => {
 		const errors = validationResult(req);
 
