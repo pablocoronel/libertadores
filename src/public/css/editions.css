@@ -5,7 +5,7 @@
 	background-color: rgb(0, 0, 0);
 }
 
-#edition img{
+#edition img {
 	border: 1px solid #797936;
 	border-radius: 5px;
 }
@@ -63,14 +63,15 @@ h1 {
 }
 
 #container-finals #match-date {
-	height: 5vh;
+	min-height: 5vh;
 	width: 100%;
 	background-color: rgb(94, 201, 201);
 	margin-top: 1vh;
 	margin-bottom: 1vh;
-	font-family: Lorenza;
+	font-family: 'Luis George Cafe';
 	text-transform: capitalize;
 	font-size: 3vh;
+	font-weight: 700;
 	text-align: center;
 }
 
