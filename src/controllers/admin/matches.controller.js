@@ -15,7 +15,7 @@ matchesController.listMatches = async (req, res) => {
 
 matchesController.createMatches = async (req, res) => {
 	try {
-		const clubs = await Club.find();
+		const clubs = await Club.find().sort({ name: 'asc' });
 
 		res.render('admin/matches/create', { clubs });
 	} catch (error) {
@@ -67,7 +67,7 @@ matchesController.editMatches = async (req, res) => {
 			.populate('awayClub')
 			.orFail();
 
-		const clubs = await Club.find();
+		const clubs = await Club.find().sort({ name: 'asc' });
 
 		res.render('admin/matches/edit', { match, clubs });
 	} catch (error) {

@@ -31,7 +31,7 @@ editionsController.listEditions = async (req, res) => {
 
 editionsController.createEditions = async (req, res) => {
 	try {
-		const clubs = await Club.find();
+		const clubs = await Club.find().sort({ name: 'asc' });
 		const matches = await Match.find();
 
 		res.render('admin/editions/create', {
@@ -94,7 +94,7 @@ editionsController.editEditions = async (req, res) => {
 			.populate('final')
 			.orFail();
 
-		const clubs = await Club.find();
+		const clubs = await Club.find().sort({ name: 'asc' });
 		const matches = await Match.find();
 
 		res.render('admin/editions/edit', {

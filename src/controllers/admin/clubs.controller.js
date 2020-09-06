@@ -19,7 +19,7 @@ const countries = [
 // Funciones
 clubsController.listClubs = async (req, res) => {
 	try {
-		const clubs = await Club.find();
+		const clubs = await Club.find().sort({ name: 'asc' });
 
 		res.render('admin/clubs/list', { clubs });
 	} catch (error) {
